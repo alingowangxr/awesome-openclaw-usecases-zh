@@ -1,11 +1,11 @@
 <div align="center">
 
-<img width="1500" height="500" alt="OpenClaw AI 智能体用例合集" src="https://github.com/user-attachments/assets/4ae57dfb-4f18-4677-9136-43bf93017250" />
+<img width="1500" height="500" alt="OpenClaw AI 智能体最佳用例合集" src="https://github.com/user-attachments/assets/4ae57dfb-4f18-4677-9136-43bf93017250" />
 
 <br/>
 <br/>
 
-<h3>OpenClaw AI 智能体中文用例大全</h3>
+<h3>OpenClaw AI 智能体最佳真实用例大全</h3>
 
 <p>29 个经过验证的真实场景，手把手教你用 AI 智能体自动化工作与生活</p>
 
@@ -23,7 +23,7 @@
 
 ---
 
-# Awesome OpenClaw 用例合集（中文版）
+# Awesome OpenClaw 最佳用例合集（中文版）
 
 > 你是否安装了 OpenClaw，却不知道拿它来做什么？
 >
