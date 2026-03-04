@@ -128,9 +128,9 @@
 | [早间简报（中国适配）](usecases/custom-morning-brief.md) | 每日定时推送简报到飞书/钉钉，支持中文新闻源和 cron 配置 | ⭐ |
 | [办公自动化套件](usecases/cn-office-automation.md) | 邮件管理、文件整理、会议纪要、周报生成，支持 163/QQ/Outlook | ⭐⭐ |
 | [小红书内容自动化](usecases/cn-xiaohongshu-automation.md) | 从选题、文案、封面图到定时发布的全流程自动化 | ⭐ |
-| [多智能体协作操作系统](usecases/cn-multi-agent-operating-system.md) | 把 OpenClaw 变成专业分工、协同、稳定迭代的智能体系统 | ⭐⭐⭐ |
 | [播客制作流水线](usecases/podcast-production-pipeline.md) | 从选题到发布的全流程播客制作自动化（小宇宙/喜马拉雅/B站适配） | ⭐⭐ |
 | [会议纪要与待办自动化](usecases/meeting-notes-action-items.md) | 会议转录自动生成纪要并创建任务（飞书妙记/腾讯会议/钉钉适配） | ⭐⭐ |
+| [多智能体协作操作系统](usecases/cn-multi-agent-operating-system.md) | 把 OpenClaw 变成专业分工、协同、稳定迭代的智能体系统 | ⭐⭐⭐ |
 
 ---
 
