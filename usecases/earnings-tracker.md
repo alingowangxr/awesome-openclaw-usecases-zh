@@ -1,14 +1,18 @@
 ---
 title: "AI 驅動的財報追蹤器"
-description: "自動追蹤財報資料，支援 AKShare 東方財富 巨潮資訊等國內資料源。"
+description: "自動追蹤財報資料，支援美股、A 股（AKShare）與台股（FinMind／TWSE OpenAPI）三種市場。"
 category: "金融與交易"
 difficulty: 2
 tags:
   - 財報
   - 股票
+  - 台股
+  - A股
   - 資料追蹤
 integrations:
   - AKShare
+  - FinMind
+  - TWSE
 featured: true
 ---
 
@@ -143,6 +147,142 @@ print(my_stocks[["股票代碼", "股票簡稱", "首次預約時間"]])
 - [AKShare 文件](https://akshare.akfamily.xyz/) — 免費開源 A 股資料介面
 - [巨潮資訊](https://www.cninfo.com.cn/) — 官方資訊披露平台
 - [東方財富資料中心](https://data.eastmoney.com/) — 財報日曆與資料查詢
+
+---
+
+## 台灣用戶適配
+
+台灣上市櫃公司的財報由金融監督管理委員會（金管會）強制規範，資料透過**公開資訊觀測站**集中揭露，且有多個免費 API 可用，非常適合自動化追蹤。
+
+### 台灣財報披露機制
+
+| 報告類型 | 申報截止日 | 說明 |
+|----------|-----------|------|
+| Q1 季報 | 5 月 15 日前 | 1–3 月財務資料 |
+| Q2 季報 | 8 月 14 日前 | 4–6 月財務資料 |
+| Q3 季報 | 11 月 14 日前 | 7–9 月財務資料 |
+| 年報 | 隔年 3 月 31 日前 | 全年完整財務報告 |
+| 法說會 | 不定期 | 管理層說明會，重大訊息 |
+
+> 台灣沒有像 A 股「業績預告」的制度，但上市公司須於財報公告前揭露**重大訊息**，可作為提前訊號。
+
+### 台灣資料源推薦
+
+| 資料源 | 費用 | 說明 |
+|--------|------|------|
+| **FinMind** | 免費／付費 | 推薦首選，Python 函式庫，歷史財務資料完整 |
+| **TWSE OpenAPI** | 免費 | 台灣證券交易所官方 API，即時行情與基本資料 |
+| **公開資訊觀測站 (MOPS)** | 免費 | 金管會官方財報揭露平台，原始 PDF/XBRL |
+| yfinance | 免費 | 股票代碼加 `.TW` 即可，快速上手但資料較基本 |
+| TEJ API | 付費 | 專業機構級，資料最完整 |
+
+**推薦方案：FinMind**（[GitHub](https://github.com/FinMind/FinMind)，MIT 許可）
+
+```bash
+pip install FinMind
+```
+
+關鍵介面：
+
+| 介面 | 用途 |
+|------|------|
+| `FinancialStatements` | 季報財務報表（損益表、資產負債表、現金流量表） |
+| `StockInfo` | 公司基本資料 |
+| `TaiwanStockPrice` | 股價歷史資料 |
+| `TaiwanStockNews` | 重大訊息與新聞 |
+
+快速上手範例：
+
+```python
+from FinMind.data import DataLoader
+
+dl = DataLoader()
+# 免費使用（有速率限制），或登入取得更高配額：
+# dl.login(user_id="your_id", password="your_pw")
+
+# 取得台積電（2330）最近 4 季損益表
+df = dl.taiwan_stock_financial_statement(
+    stock_id="2330",
+    start_date="2024-01-01",
+)
+print(df[["date", "type", "value"]].head(20))
+```
+
+使用 yfinance 的快速替代方案（台股代碼加 `.TW`）：
+
+```python
+import yfinance as yf
+
+# 台積電
+tsmc = yf.Ticker("2330.TW")
+print(tsmc.quarterly_financials)   # 季度財務報表
+print(tsmc.calendar)               # 財報日期（若有）
+```
+
+### 台灣熱門追蹤標的
+
+```python
+watchlist_tw = {
+    "2330": "台積電",
+    "2317": "鴻海",
+    "2454": "聯發科",
+    "2382": "廣達",
+    "2308": "台達電",
+    "2303": "聯電",
+    "3711": "日月光投控",
+    "2412": "中華電",
+}
+```
+
+### 提示詞適配
+
+```text
+每季財報截止日前一週，執行定時任務：
+1. 使用 FinMind 取得我關注清單的最新季報資料
+   （2330 台積電、2317 鴻海、2454 聯發科 等）
+2. 與上季、去年同期比較：營收、毛利率、EPS、YoY 成長
+3. 搜尋各公司法說會日期和重大訊息
+4. 整理摘要推送到 Telegram
+
+財報發布後：
+1. 抓取最新季報數字
+2. 格式化摘要：EPS 是否優於預期、毛利率變化、下季展望
+3. 附上公開資訊觀測站原始連結
+4. 推送通知
+
+記住我關注的公司清單，每季自動提醒。
+```
+
+### 公開資訊觀測站直接查詢
+
+若需要取得原始財報 PDF 或 XBRL 資料：
+
+```python
+import requests
+
+# 查詢特定公司最新財報揭露（以台積電 2330 為例）
+url = "https://mops.twse.com.tw/mops/web/ajax_t05st09"
+params = {
+    "encodeURIComponent": 1,
+    "step": 1,
+    "firstin": 1,
+    "co_id": "2330",  # 股票代碼
+}
+# 回傳 HTML 表格，可搭配 pandas 解析
+```
+
+### 合規提醒
+
+- 資料僅供個人學習研究，不構成投資建議
+- FinMind 免費版有每日請求次數限制，建議快取結果避免重複請求
+- 公開資訊觀測站為官方平台，請勿對其進行高頻爬取
+
+### 相關連結（台灣）
+
+- [FinMind 文件](https://finmindtrade.com/) — 免費台股資料 API
+- [公開資訊觀測站](https://mops.twse.com.tw/) — 金管會官方財報揭露平台
+- [TWSE OpenAPI](https://openapi.twse.com.tw/) — 台灣證券交易所開放資料
+- [櫃買中心 OpenAPI](https://www.tpex.org.tw/openapi/) — 上櫃股票資料
 
 ---
 
