@@ -144,6 +144,47 @@ npm run preview  # 預覽建置結果
 
 ---
 
+## 新增用例
+
+新增一個用例只需兩步：
+
+**第一步**：在 `usecases/` 目錄下建立新的 `.md` 檔案，開頭加上 frontmatter：
+
+```yaml
+---
+title: "用例標題"
+description: "一句話說明這個用例做什麼"
+category: "生產力"
+difficulty: 2
+tags: ["自動化", "Telegram"]
+integrations: ["Telegram"]
+featured: false
+---
+```
+
+`category` 只能填這 7 個之一：`中國特色` / `社群媒體` / `創意與構建` / `基礎設施與DevOps` / `生產力` / `研究與學習` / `金融與交易`
+
+`difficulty`：`1`（新手）、`2`（中級）、`3`（進階）
+
+**第二步**：Push 到 GitHub：
+
+```bash
+git add usecases/my-new-usecase.md
+git commit -m "feat: 新增「用例名稱」"
+git push
+```
+
+Push 後網站自動重新建置（約 2–3 分鐘），新用例立即出現在列表、分類篩選和相關推薦中，無需改任何程式碼。
+
+| 操作 | 做法 |
+|------|------|
+| 修改現有用例內容 | 直接編輯對應的 `.md` 檔，push |
+| 改標題／分類／難度 | 修改該檔的 frontmatter，push |
+| 設為精選（首頁顯示） | 將 frontmatter 的 `featured` 改為 `true` |
+| 刪除用例 | 刪除 `.md` 檔，push |
+
+---
+
 ## 貢獻
 
 歡迎提交經過驗證的真實用例，詳見 [CONTRIBUTING.md](CONTRIBUTING.md)。
