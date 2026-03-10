@@ -1,23 +1,36 @@
-# 个人 CRM（客户关系管理）与自动联系人发现
+---
+title: "個人 CRM 與自動聯絡人發現"
+description: "自動記錄你見過的人、見面時間和討論內容，確保重要的跟進事項不再被遺漏。"
+category: "生產力"
+difficulty: 2
+tags:
+  - CRM
+  - 聯絡人管理
+  - 關係追蹤
+integrations: []
+featured: false
+---
 
-手动记录你见过的人、见面时间以及讨论内容几乎不可能。重要的跟进事项不知不觉就被遗漏，在重要会议前你也忘记了相关背景。
+# 個人 CRM（客戶關係管理）與自動聯絡人發現
 
-这个工作流自动构建和维护个人 CRM：
+手動記錄你見過的人、見面時間以及討論內容幾乎不可能。重要的跟進事項不知不覺就被遺漏，在重要會議前你也忘記了相關背景。
 
-- 每日定时任务（cron job）扫描邮件和日历，发现新联系人和互动记录
-- 将联系人存储在结构化数据库中，附带关系上下文
-- 自然语言查询："我对 [某人] 了解多少？"、"谁需要跟进？"、"我上次和 [某人] 交流是什么时候？"
-- 每日会议准备简报：在当天会议前，通过 CRM 和邮件历史研究外部与会者，并提供简报
+這個工作流自動構建和維護個人 CRM：
+
+- 每日定時任務（cron job）掃描郵件和行事曆，發現新聯絡人和互動記錄
+- 將聯絡人儲存在結構化資料庫中，附帶關係上下文
+- 自然語言查詢：「我對 [某人] 了解多少？」、「誰需要跟進？」、「我上次和 [某人] 交流是什麼時候？」
+- 每日會議準備簡報：在當天會議前，透過 CRM 和郵件歷史研究外部與會者，並提供簡報
 
 ## 所需技能
 
-- `gog` CLI（用于 Gmail 和 Google Calendar）
-- 自定义 CRM 数据库（SQLite 或类似方案），或使用 [crm-query](https://clawhub.ai) 技能（如果可用）
-- Telegram 话题用于 CRM 查询
+- `gog` CLI（用於 Gmail 和 Google Calendar）
+- 自訂 CRM 資料庫（SQLite 或類似方案），或使用 [crm-query](https://clawhub.ai) 技能（如果可用）
+- Telegram 話題用於 CRM 查詢
 
-## 如何设置
+## 如何設定
 
-1. 创建 CRM 数据库：
+1. 建立 CRM 資料庫：
 ```sql
 CREATE TABLE contacts (
   id INTEGER PRIMARY KEY,
@@ -29,10 +42,10 @@ CREATE TABLE contacts (
   notes TEXT
 );
 ```
-2. 在 Telegram 中设置一个名为 "personal-crm" 的话题用于查询。
+2. 在 Telegram 中設定一個名為 "personal-crm" 的話題用於查詢。
 3. 指示 OpenClaw：
 
-以下提示词配置自动联系人发现和每日会议简报：
+以下提示詞設定自動聯絡人發現和每日會議簡報：
 
 ```text
 Run a daily cron job at 6 AM to:
@@ -50,4 +63,3 @@ When I ask about a contact in the personal-crm topic, search the database and gi
 
 ---
 
-**原文链接**：[English Version](https://github.com/AlexAnys/awesome-openclaw-usecases/blob/main/usecases/personal-crm.md)

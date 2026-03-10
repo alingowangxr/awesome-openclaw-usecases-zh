@@ -1,0 +1,141 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import DifficultyBadge from '../../components/DifficultyBadge.astro';
+import CategoryBadge from '../../components/CategoryBadge.astro';
+import UsecaseCard from '../../components/UsecaseCard.astro';
+
+export async function getStaticPaths() {
+  const usecases = await getCollection('usecases');
+  return usecases.map(usecase => ({
+    params: { slug: usecase.id },
+    props: { usecase },
+  }));
+}
+
+const { usecase } = Astro.props;
+const { Content } = await render(usecase);
+const { title, description, category, difficulty, tags, integrations } = usecase.data;
+
+// 取得相關用例（同分類，排除自己，最多 3 個）
+const allUsecases = await getCollection('usecases');
+const related = allUsecases
+  .filter(u => u.data.category === category && u.id !== usecase.id)
+  .slice(0, 3);
+---
+
+<Layout title={title} description={description}>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- 麵包屑導覽 -->
+    <nav class="flex items-center gap-2 text-sm text-gray-500 mb-8">
+      <a href="/" class="hover:text-indigo-600 transition-colors">首頁</a>
+      <span>›</span>
+      <a href="/usecases" class="hover:text-indigo-600 transition-colors">用例庫</a>
+      <span>›</span>
+      <span class="text-gray-900 font-medium truncate max-w-xs">{title}</span>
+    </nav>
+
+    <div class="lg:grid lg:grid-cols-4 lg:gap-10">
+      <!-- 主內容 -->
+      <article class="lg:col-span-3">
+        <!-- 標題區 -->
+        <div class="mb-6">
+          <div class="flex flex-wrap items-center gap-2 mb-4">
+            <CategoryBadge category={category} />
+            <DifficultyBadge difficulty={difficulty} />
+          </div>
+          <h1 class="text-3xl font-bold text-gray-900 mb-3 leading-tight">{title}</h1>
+          <p class="text-lg text-gray-600 leading-relaxed">{description}</p>
+        </div>
+
+        <!-- 分隔線 -->
+        <hr class="border-gray-200 mb-8" />
+
+        <!-- Markdown 內容 -->
+        <div class="prose">
+          <Content />
+        </div>
+      </article>
+
+      <!-- 側邊欄 -->
+      <aside class="lg:col-span-1 mt-10 lg:mt-0">
+        <!-- Integrations -->
+        {integrations && integrations.length > 0 && (
+          <div class="bg-white rounded-xl border border-gray-200 p-5 mb-5">
+            <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">所需整合</h3>
+            <div class="flex flex-wrap gap-2">
+              {integrations.map(integration => (
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs bg-indigo-50 text-indigo-700 border border-indigo-100 font-medium">
+                  {integration}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Tags -->
+        {tags && tags.length > 0 && (
+          <div class="bg-white rounded-xl border border-gray-200 p-5 mb-5">
+            <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">標籤</h3>
+            <div class="flex flex-wrap gap-2">
+              {tags.map(tag => (
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs bg-gray-100 text-gray-600">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- 返回按鈕 -->
+        <a
+          href="/usecases"
+          class="flex items-center gap-2 text-sm text-gray-600 hover:text-indigo-600 transition-colors font-medium"
+        >
+          ← 返回用例庫
+        </a>
+      </aside>
+    </div>
+
+    <!-- 相關用例 -->
+    {related.length > 0 && (
+      <section class="mt-16 pt-10 border-t border-gray-200">
+        <h2 class="text-xl font-bold text-gray-900 mb-6">相關用例</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {related.map(u => (
+            <UsecaseCard
+              id={u.id}
+              title={u.data.title}
+              description={u.data.description}
+              category={u.data.category}
+              difficulty={u.data.difficulty}
+              tags={u.data.tags}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</Layout>
+
+<script>
+  // 為所有 pre 元素加上複製按鈕
+  document.querySelectorAll('pre').forEach(pre => {
+    const btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.textContent = '複製';
+    btn.style.cssText =
+      'position:absolute;top:0.5rem;right:0.5rem;padding:0.25rem 0.5rem;background:#334155;color:#94a3b8;border:none;border-radius:0.25rem;font-size:0.75rem;cursor:pointer;';
+    btn.addEventListener('click', () => {
+      const code = pre.querySelector('code');
+      navigator.clipboard.writeText(code?.textContent ?? pre.textContent ?? '');
+      btn.textContent = '已複製！';
+      btn.style.color = '#4ade80';
+      setTimeout(() => {
+        btn.textContent = '複製';
+        btn.style.color = '#94a3b8';
+      }, 2000);
+    });
+    pre.appendChild(btn);
+  });
+</script>

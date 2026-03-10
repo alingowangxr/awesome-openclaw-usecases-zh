@@ -1,28 +1,41 @@
-# YouTube 内容管线
+---
+title: "YouTube 內容管線"
+description: "自動在網路和 X/Twitter 上尋找新鮮影片創意，追蹤已涵蓋的內容，保持日更創作領先趨勢。"
+category: "社群媒體"
+difficulty: 2
+tags:
+  - YouTube
+  - 內容創作
+  - 創意
+integrations: []
+featured: false
+---
 
-作为一名日更的 YouTube 创作者，在网络和 X/Twitter 上寻找新鲜、及时的视频创意非常耗时。追踪已经覆盖过的内容可以避免重复，并帮助你保持领先趋势。
+# YouTube 內容管線
 
-这个工作流自动化了整个内容搜集和调研管线：
+作為一名日更的 YouTube 創作者，在網路和 X/Twitter 上尋找新鮮、及時的影片創意非常耗時。追蹤已經涵蓋過的內容可以避免重複，並幫助你保持領先趨勢。
 
-- 每小时定时任务（cron job）扫描突发 AI 新闻（网络 + X/Twitter），并将视频创意推送到 Telegram
-- 维护一个 90 天的视频目录，包含播放量和主题分析，避免重复覆盖话题
-- 将所有创意存储在 SQLite 数据库中，并使用向量嵌入（vector embeddings）进行语义去重（这样你永远不会收到重复的创意推荐）
-- 当你在 Slack 中分享一个链接时，OpenClaw 会调研该话题、在 X 上搜索相关帖子、查询你的知识库，并在 Asana 中创建一个包含完整大纲的任务卡
+這個工作流自動化了整個內容搜集和調研管線：
+
+- 每小時定時任務（cron job）掃描突發 AI 新聞（網路 + X/Twitter），並將影片創意推送到 Telegram
+- 維護一個 90 天的影片目錄，包含播放量和主題分析，避免重複涵蓋話題
+- 將所有創意儲存在 SQLite 資料庫中，並使用向量嵌入（vector embeddings）進行語義去重（這樣你永遠不會收到重複的創意推薦）
+- 當你在 Slack 中分享一個連結時，OpenClaw 會調研該話題、在 X 上搜尋相關貼文、查詢你的知識庫，並在 Asana 中建立一個包含完整大綱的任務卡
 
 ## 所需技能
 
-- `web_search`（内置）
-- [x-research-v2](https://clawhub.ai) 或自定义 X/Twitter 搜索技能
-- [knowledge-base](https://clawhub.ai) 技能，用于 RAG（检索增强生成）
-- Asana 集成（或 Todoist）
-- `gog` CLI，用于 YouTube Analytics 数据
-- Telegram 话题，用于接收创意推送
+- `web_search`（內建）
+- [x-research-v2](https://clawhub.ai) 或自訂 X/Twitter 搜尋技能
+- [knowledge-base](https://clawhub.ai) 技能，用於 RAG（檢索增強生成）
+- Asana 整合（或 Todoist）
+- `gog` CLI，用於 YouTube Analytics 資料
+- Telegram 話題，用於接收創意推送
 
-## 如何设置
+## 如何設定
 
-1. 在 Telegram 中设置一个视频创意话题，并在 OpenClaw 中配置。
-2. 安装 knowledge-base 技能和 x-research 技能。
-3. 创建用于创意追踪的 SQLite 数据库：
+1. 在 Telegram 中設定一個影片創意話題，並在 OpenClaw 中設定。
+2. 安裝 knowledge-base 技能和 x-research 技能。
+3. 建立用於創意追蹤的 SQLite 資料庫：
 
 ```sql
 CREATE TABLE pitches (
@@ -52,4 +65,3 @@ Also: when I share a link in Slack #ai_trends, automatically:
 
 ---
 
-**原文链接**：[English Version](https://github.com/AlexAnys/awesome-openclaw-usecases/blob/main/usecases/youtube-content-pipeline.md)

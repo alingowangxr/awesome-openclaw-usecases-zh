@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="貢獻指南" description="了解如何為 Awesome OpenClaw 用例合集（中文版）貢獻你的 AI 智能體使用場景。">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- 返回首頁 -->
+    <div class="mb-8">
+      <a href="/" class="text-indigo-600 hover:underline text-sm">← 返回首頁</a>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">貢獻指南</h1>
+      <p class="text-gray-500 mb-8">歡迎為 Awesome OpenClaw 用例合集貢獻你的用例</p>
+
+      <div class="prose">
+        <h2>收錄標準</h2>
+        <ul>
+          <li><strong>真實跑通</strong>：用例必須已在真實環境中測試並能穩定執行</li>
+          <li><strong>多源驗證</strong>：有截圖、影片或第三方評論佐證</li>
+          <li><strong>可複現</strong>：讀者按照步驟操作應能得到相同結果</li>
+          <li><strong>中文友善</strong>：提供完整的中文說明和可複製的提示詞</li>
+        </ul>
+
+        <h2>如何提交</h2>
+        <ol>
+          <li>Fork 本倉庫</li>
+          <li>從 main 分支建立新分支（命名規則：<code>feat/用例名稱</code>、<code>fix/修正說明</code>、<code>improve/改進說明</code>）</li>
+          <li>在 <code>usecases/</code> 目錄下新增 markdown 文件</li>
+          <li>確保包含完整的 frontmatter（<code>title</code>、<code>description</code>、<code>category</code>、<code>difficulty</code>、<code>tags</code>）</li>
+          <li>提交 Pull Request 並填寫模板</li>
+        </ol>
+
+        <h2>文件格式要求</h2>
+        <p>每個用例文件應包含以下章節：</p>
+        <ul>
+          <li><strong>它能做什麼</strong>：具體功能列表</li>
+          <li><strong>所需技能</strong>：需要安裝哪些外掛</li>
+          <li><strong>如何設定</strong>：手把手教學（含可複製的提示詞）</li>
+          <li><strong>實用建議</strong>（可選）：踩過的坑和最佳實踐</li>
+        </ul>
+
+        <h2>Frontmatter 範例</h2>
+        <pre><code>---
+title: 我的 OpenClaw 用例標題
+description: 簡短說明這個用例能做什麼（1-2 句話）
+category: 生產力
+difficulty: 1
+tags:
+  - 自動化
+  - 提醒
+integrations:
+  - Google Calendar
+  - Slack
+featured: false
+---</code></pre>
+
+        <h2>分類說明</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>分類名稱</th>
+              <th>適用場景</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>中國特色</td><td>微信、釘釘、飛書、小紅書等國內平台相關用例</td></tr>
+            <tr><td>社群媒體</td><td>X、Reddit、YouTube 等社群平台自動化</td></tr>
+            <tr><td>創意與構建</td><td>內容創作、影片製作、App 開發等創意工作</td></tr>
+            <tr><td>基礎設施與DevOps</td><td>伺服器管理、CI/CD、監控等技術運維</td></tr>
+            <tr><td>生產力</td><td>個人效率、任務管理、日程安排等日常自動化</td></tr>
+            <tr><td>研究與學習</td><td>資料蒐集、知識管理、學習輔助等</td></tr>
+            <tr><td>金融與交易</td><td>市場追蹤、財務分析等金融相關應用</td></tr>
+          </tbody>
+        </table>
+
+        <h2>難度等級</h2>
+        <ul>
+          <li><strong>⭐ 新手（1）</strong>：複製貼上即可用，不需要技術背景</li>
+          <li><strong>⭐⭐ 中級（2）</strong>：需要簡單的帳號設定或 API key</li>
+          <li><strong>⭐⭐⭐ 進階（3）</strong>：需要一定的技術基礎，如伺服器架設或程式撰寫</li>
+        </ul>
+
+        <h2>不接受的內容</h2>
+        <ul>
+          <li>未經測試的用例（純想法）</li>
+          <li>加密貨幣相關內容</li>
+          <li>涉及違法或不道德操作的用例</li>
+          <li>重複或高度雷同的用例</li>
+        </ul>
+
+        <h2>聯絡方式</h2>
+        <p>
+          如有任何問題，歡迎在
+          <a href="https://github.com/openclaw/openclaw/issues" target="_blank" rel="noopener noreferrer">
+            GitHub Issues
+          </a>
+          提出，或直接發起 Pull Request。
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>

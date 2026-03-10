@@ -1,0 +1,28 @@
+---
+interface Props {
+  difficulty: number;
+}
+
+const { difficulty } = Astro.props;
+
+const difficultyMap: Record<number, { label: string; classes: string }> = {
+  1: {
+    label: '⭐ 新手',
+    classes: 'bg-green-100 text-green-700 border border-green-200',
+  },
+  2: {
+    label: '⭐⭐ 中級',
+    classes: 'bg-yellow-100 text-yellow-700 border border-yellow-200',
+  },
+  3: {
+    label: '⭐⭐⭐ 進階',
+    classes: 'bg-red-100 text-red-700 border border-red-200',
+  },
+};
+
+const config = difficultyMap[difficulty] ?? difficultyMap[1];
+---
+
+<span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${config.classes}`}>
+  {config.label}
+</span>

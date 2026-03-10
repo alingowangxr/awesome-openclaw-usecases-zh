@@ -1,33 +1,46 @@
-# 第二大脑
+---
+title: "第二大腦"
+description: "建立如同傳訊息般簡單的第二大腦，隨時擷取想法、書籤和閱讀筆記，自動組織和連結知識。"
+category: "研究與學習"
+difficulty: 1
+tags:
+  - 第二大腦
+  - 知識管理
+  - 筆記
+integrations: []
+featured: true
+---
 
-你会产生想法、发现有趣的链接、听说要读的书——但你从来没有一个好的系统来捕获它们。Notion 变得复杂，Apple Notes 变成了一个拥有 10,000 条未读笔记的坟场。你需要的是像给朋友发短信一样简单的东西。
+# 第二大腦
 
-这个工作流将 OpenClaw 变成一个通过短信交互的记忆捕获系统，背后有一个可随时浏览的自定义可搜索界面。
+你會產生想法、發現有趣的連結、聽說要讀的書——但你從來沒有一個好的系統來擷取它們。Notion 變得複雜，Apple Notes 變成了一個擁有 10,000 條未讀筆記的墳場。你需要的是像給朋友傳簡訊一樣簡單的東西。
 
-## 功能介绍
+這個工作流將 OpenClaw 變成一個透過簡訊互動的記憶擷取系統，背後有一個可隨時瀏覽的自訂可搜尋介面。
 
-- 通过 Telegram、iMessage 或 Discord 向你的 OpenClaw 发送任何内容——"提醒我读一本关于本地 LLM 的书"——它会立即记住
-- OpenClaw 内置的记忆系统会永久存储你告诉它的一切
-- 自定义的 Next.js 仪表盘让你可以搜索每一条记忆、对话和笔记
-- 全局搜索（Cmd+K）覆盖所有记忆、文档和任务
-- 无需文件夹、无需标签、无需复杂的组织——只需输入和搜索
+## 功能介紹
 
-## 痛点
+- 透過 Telegram、iMessage 或 Discord 向你的 OpenClaw 發送任何內容——「提醒我讀一本關於本地 LLM 的書」——它會立即記住
+- OpenClaw 內建的記憶系統會永久儲存你告訴它的一切
+- 自訂的 Next.js 儀表板讓你可以搜尋每一條記憶、對話和筆記
+- 全域搜尋（Cmd+K）涵蓋所有記憶、文件和任務
+- 無需資料夾、無需標籤、無需複雜的組織——只需輸入和搜尋
 
-每个笔记应用最终都会变成负担。你停止使用它，因为组织的摩擦比遗忘的摩擦更高。关键洞察是：**捕获应该像发短信一样简单，检索应该像搜索一样简单**。
+## 痛點
+
+每個筆記應用程式最終都會變成負擔。你停止使用它，因為組織的摩擦比遺忘的摩擦更高。關鍵洞察是：**擷取應該像傳簡訊一樣簡單，檢索應該像搜尋一樣簡單**。
 
 ## 所需技能
 
-- Telegram、iMessage 或 Discord 集成（用于基于文本的捕获）
-- Next.js（OpenClaw 会为你构建——无需编码）
+- Telegram、iMessage 或 Discord 整合（用於基於文字的擷取）
+- Next.js（OpenClaw 會為你建構——無需撰寫程式碼）
 
-## 设置方法
+## 設定方法
 
-1. 确保你的 OpenClaw 已连接到你偏好的消息平台（Telegram、Discord 等）。
+1. 確保你的 OpenClaw 已連線到你偏好的訊息平台（Telegram、Discord 等）。
 
-2. 立即开始使用——只需向你的机器人发送任何你想记住的内容：
+2. 立即開始使用——只需向你的機器人發送任何你想記住的內容：
 
-以下是一些记忆捕获的示例：
+以下是一些記憶擷取的示例：
 
 ```text
 Hey, remind me to read "Designing Data-Intensive Applications"
@@ -35,9 +48,9 @@ Save this link: https://example.com/interesting-article
 Remember: John recommended the restaurant on 5th street
 ```
 
-3. 通过提示 OpenClaw 构建可搜索的界面：
+3. 透過提示 OpenClaw 建構可搜尋的介面：
 
-以下提示词让智能体为你构建一个完整的第二大脑 Web 应用：
+以下提示詞讓智能體為你建構一個完整的第二大腦 Web 應用程式：
 
 ```text
 I want to build a second brain system where I can review all our notes,
@@ -50,25 +63,24 @@ Include:
 - Clean, minimal UI
 ```
 
-4. OpenClaw 会为你构建并部署整个 Next.js 应用。访问它提供的 URL，你就拥有了自己的第二大脑仪表盘。
+4. OpenClaw 會為你建構並部署整個 Next.js 應用程式。存取它提供的 URL，你就擁有了自己的第二大腦儀表板。
 
-5. 从现在开始，每当你想到什么——在路上、在会议中、睡前——只需给你的机器人发消息。需要查找什么的时候再回到仪表盘。
+5. 從現在開始，每當你想到什麼——在路上、在會議中、睡前——只需給你的機器人發訊息。需要查找什麼的時候再回到儀表板。
 
-## 关键洞察
+## 關鍵洞察
 
-- 力量在于**零摩擦捕获**。你不需要打开应用、选择文件夹或添加标签。只需发消息。
-- OpenClaw 的记忆系统是累积的——它记住你*曾经*告诉它的一切，使其随时间变得更加强大。
-- 你可以从手机给机器人发消息，它会在你的电脑上构建东西。界面就是对话本身。
+- 力量在於**零摩擦擷取**。你不需要開啟應用程式、選擇資料夾或新增標籤。只需發訊息。
+- OpenClaw 的記憶系統是累積的——它記住你*曾經*告訴它的一切，使其隨時間變得更加強大。
+- 你可以從手機給機器人發訊息，它會在你的電腦上建構東西。介面就是對話本身。
 
-## 参考来源
+## 參考來源
 
-灵感来自 [Alex Finn 关于改变生活的 OpenClaw 用例的视频](https://www.youtube.com/watch?v=41_TNGDDnfQ)。
+靈感來自 [Alex Finn 關於改變生活的 OpenClaw 用例的影片](https://www.youtube.com/watch?v=41_TNGDDnfQ)。
 
-## 相关链接
+## 相關連結
 
-- [OpenClaw 记忆系统](https://github.com/openclaw/openclaw)
-- [打造第二大脑（Tiago Forte）](https://www.buildingasecondbrain.com/)
+- [OpenClaw 記憶系統](https://github.com/openclaw/openclaw)
+- [打造第二大腦（Tiago Forte）](https://www.buildingasecondbrain.com/)
 
 ---
 
-**原文链接**：[English Version](https://github.com/AlexAnys/awesome-openclaw-usecases/blob/main/usecases/second-brain.md)

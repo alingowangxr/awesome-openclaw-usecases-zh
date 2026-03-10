@@ -1,39 +1,53 @@
-# Polymarket 自动驾驶：自动化模拟交易
+---
+title: "Polymarket 自動駕駛：自動化模擬交易"
+description: "自動監控預測市場套利機會並模擬執行交易策略，在不冒真金白銀風險的情況下測試策略。"
+category: "金融與交易"
+difficulty: 3
+tags:
+  - 預測市場
+  - Polymarket
+  - 模擬交易
+integrations:
+  - Polymarket
+featured: false
+---
 
-手动监控预测市场的套利机会并执行交易既耗时又需要持续关注。你希望在不冒真金白银风险的情况下测试和优化交易策略。
+# Polymarket 自動駕駛：自動化模擬交易
 
-这个工作流使用自定义策略在 Polymarket 上自动化模拟交易（paper trading）：
+手動監控預測市場的套利機會並執行交易既耗時又需要持續關注。你希望在不冒真金白銀風險的情況下測試和最佳化交易策略。
 
-- 通过 API 监控市场数据（价格、成交量、价差）
-- 使用 TAIL（趋势跟踪）和 BONDING（逆向）策略执行模拟交易
-- 追踪投资组合表现、盈亏和胜率
-- 每日向 Discord 推送包含交易日志和洞察的摘要
-- 从模式中学习：根据回测结果调整策略参数
+這個工作流使用自訂策略在 Polymarket 上自動化模擬交易（paper trading）：
 
-## 痛点
+- 透過 API 監控市場資料（價格、成交量、價差）
+- 使用 TAIL（趨勢跟蹤）和 BONDING（逆向）策略執行模擬交易
+- 追蹤投資組合表現、盈虧和勝率
+- 每日向 Discord 推送包含交易日誌和洞察的摘要
+- 從模式中學習：根據回測結果調整策略參數
 
-预测市场变化很快。手动交易意味着错过机会、情绪化决策以及难以追踪哪些策略有效。在你了解市场行为之前就用真钱测试策略，会有亏损风险。
+## 痛點
 
-## 功能介绍
+預測市場變化很快。手動交易意味著錯過機會、情緒化決策以及難以追蹤哪些策略有效。在你了解市場行為之前就用真錢測試策略，會有虧損風險。
 
-自动驾驶系统持续扫描 Polymarket 的机会，使用可配置的策略模拟交易，并记录所有内容以供分析。你醒来时就能看到它"隔夜交易"的摘要——哪些有效，哪些无效。
+## 功能介紹
+
+自動駕駛系統持續掃描 Polymarket 的機會，使用可設定的策略模擬交易，並記錄所有內容以供分析。你醒來時就能看到它「隔夜交易」的摘要——哪些有效，哪些無效。
 
 策略示例：
-- **TAIL**：当成交量飙升且趋势明确时跟随趋势
-- **BONDING**：当市场对新闻过度反应时买入逆向头寸
-- **SPREAD**：识别定价偏差的市场，寻找套利机会
+- **TAIL**：當成交量飆升且趨勢明確時跟隨趨勢
+- **BONDING**：當市場對新聞過度反應時買入逆向頭寸
+- **SPREAD**：識別定價偏差的市場，尋找套利機會
 
 ## 所需技能
 
-- `web_search` 或 `web_fetch`（用于获取 Polymarket API 数据）
-- `postgres` 或 SQLite，用于交易日志和投资组合追踪
-- Discord 集成，用于每日报告
-- Cron job（定时任务），用于持续监控
-- Sub-agent（子智能体）生成，用于并行市场分析
+- `web_search` 或 `web_fetch`（用於取得 Polymarket API 資料）
+- `postgres` 或 SQLite，用於交易日誌和投資組合追蹤
+- Discord 整合，用於每日報告
+- Cron job（定時任務），用於持續監控
+- Sub-agent（子智能體）生成，用於並行市場分析
 
-## 如何设置
+## 如何設定
 
-1. 设置用于模拟交易的数据库：
+1. 設定用於模擬交易的資料庫：
 ```sql
 CREATE TABLE paper_trades (
   id SERIAL PRIMARY KEY,
@@ -57,9 +71,9 @@ CREATE TABLE portfolio (
 );
 ```
 
-2. 创建一个 Discord 频道用于更新（例如 #polymarket-autopilot）。
+2. 建立一個 Discord 頻道用於更新（例如 #polymarket-autopilot）。
 
-3. 向 OpenClaw 发送以下提示词：
+3. 向 OpenClaw 發送以下提示詞：
 ```text
 You are a Polymarket paper trading autopilot. Run continuously (via cron every 15 minutes):
 
@@ -82,13 +96,12 @@ Use sub-agents to analyze multiple markets in parallel during high-volume period
 Never use real money. This is paper trading only.
 ```
 
-4. 根据表现迭代策略。调整阈值、添加新策略、对历史数据进行回测。
+4. 根據表現迭代策略。調整閾值、新增策略、對歷史資料進行回測。
 
-## 相关链接
+## 相關連結
 
 - [Polymarket API](https://docs.polymarket.com/)
-- [模拟交易最佳实践](https://www.investopedia.com/articles/trading/11/paper-trading.asp)
+- [模擬交易最佳實踐](https://www.investopedia.com/articles/trading/11/paper-trading.asp)
 
 ---
 
-**原文链接**：[English Version](https://github.com/AlexAnys/awesome-openclaw-usecases/blob/main/usecases/polymarket-autopilot.md)

@@ -1,249 +1,167 @@
 <div align="center">
 
-<img width="1500" height="500" alt="OpenClaw AI 智能体最佳用例合集" src="https://github.com/user-attachments/assets/4ae57dfb-4f18-4677-9136-43bf93017250" />
+<img width="1500" height="500" alt="OpenClaw AI 智能體最佳用例合集" src="https://github.com/user-attachments/assets/4ae57dfb-4f18-4677-9136-43bf93017250" />
 
 <br/>
 <br/>
 
-<h3>OpenClaw AI 智能体最佳真实用例大全</h3>
+<h3>OpenClaw AI 智能體最佳真實用例大全</h3>
 
-<p>40 个经过验证的真实场景，手把手教你用 AI 智能体自动化工作与生活</p>
+<p>40 個經過驗證的真實場景，手把手教你用 AI 智能體自動化工作與生活</p>
 
 <br/>
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-![用例数量](https://img.shields.io/badge/用例-40-blue?style=flat-square)
-![中文](https://img.shields.io/badge/语言-简体中文-red?style=flat-square)
-![新手友好](https://img.shields.io/badge/难度-新手友好-green?style=flat-square)
+![用例數量](https://img.shields.io/badge/用例-40-blue?style=flat-square)
+![語言](https://img.shields.io/badge/語言-繁體中文-red?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
-
-**[快速开始](#-新手入门指南)** · **[用例目录](#-目录)** · **[贡献指南](CONTRIBUTING.md)**
 
 </div>
 
 ---
 
-# Awesome OpenClaw 最佳用例合集（中文版）
+一份面向中文使用者的 OpenClaw 真實使用案例合集，包含國際用例的中文適配，以及飛書、釘釘、企業微信、小紅書、AKShare 等國內生態的原創用例。
 
-> 解决 OpenClaw 普及的瓶颈：不是 ~~技能~~，而是找到 **能改善你生活的方式**。
->
-> 一份面向中文用户的 OpenClaw 真实使用案例合集，包含社区验证的国际用例的中国适配，国内生态特色用例，从零入门。
+> 解決 OpenClaw 普及的瓶頸：不是 ~~技能~~，而是找到**能改善你生活的方式**。
 
 <details>
-<summary><strong>📖 来源声明</strong></summary>
+<summary>來源聲明</summary>
 
-本仓库受 [awesome-openclaw-usecases](https://github.com/hesamsheikh/awesome-openclaw-usecases) 启发，在其基础上独立发展，包含大量国内生态原创用例和适配内容。感谢原作者 [hesamsheikh](https://github.com/hesamsheikh) 和所有社区贡献者。
+本倉庫受 [awesome-openclaw-usecases](https://github.com/hesamsheikh/awesome-openclaw-usecases) 啟發，在其基礎上獨立發展。感謝原作者 [hesamsheikh](https://github.com/hesamsheikh) 和所有社群貢獻者。
 
 </details>
 
-> **2026.3.4 更新**：中国特色用例扩充至 13 个——新增 A 股财报追踪、多渠道客服、创意验证器等国际用例的国内适配，按场景分类展示。详见 [中国特色用例](#-中国特色用例)。
-
 ---
 
-## 🗂 目录
+## 快速開始
 
-- [新手入门指南](#-新手入门指南)
-- [中国特色用例](#-中国特色用例) — 适配国内生态的精选用例（飞书、钉钉、企业微信、AKShare 等）
-- [社交媒体](#社交媒体) — 自动获取 Reddit、YouTube、X 等平台的精选内容
-- [创意与构建](#创意与构建) — 让 AI 帮你创作内容、构建应用
-- [基础设施与 DevOps](#基础设施与-devops) — 服务器自愈、工作流自动化
-- [生产力](#生产力) — 邮件整理、日程管理、客户服务、个人助理
-- [研究与学习](#研究与学习) — 知识库、市场调研、财报追踪
-- [金融与交易](#金融与交易) — 预测市场模拟交易
-
----
-
-## 🚀 新手入门指南
-
-[OpenClaw](https://github.com/openclaw/openclaw)（前身为 ClawdBot、MoltBot）是一个开源的 **个人 AI 智能体**。和普通 AI 聊天不同，它能主动执行任务、永久记住你的偏好、连接多个平台、按时间表自动运行。简单来说，是一个 **7×24 小时在线的 AI 员工**。[查看官方中文教程](https://docs.openclaw.ai/zh-CN)
-
-<details>
-<summary><strong>🚀 三步开始使用（点击展开）</strong></summary>
+[OpenClaw](https://github.com/openclaw/openclaw) 是一個開源的個人 AI 智能體，能主動執行任務、永久記住你的偏好、連接多個平台、按時間表自動執行。
 
 ```
-1️⃣  安装 OpenClaw → github.com/openclaw/openclaw
-2️⃣  从下方选一个感兴趣的用例开始，或连接你的 Telegram / Discord / 飞书 / 钉钉 / 企业微信
-3️⃣  复制用例中的提示词，粘贴给你的 OpenClaw
+1. 安裝 OpenClaw → github.com/openclaw/openclaw
+2. 從下方挑一個感興趣的用例
+3. 複製用例中的提示詞，貼給你的 OpenClaw
 ```
 
-就这么简单。
+> ⭐ 複製貼上即可用 · ⭐⭐ 需要簡單設定 · ⭐⭐⭐ 需要一定技術基礎
 
-</details>
-
-<details>
-<summary><strong>📖 核心概念一看就懂（点击展开）</strong></summary>
-
-| 概念 | 英文 | 一句话解释 | 生活类比 |
-|:---:|:---:|---|---|
-| 工作区 | Workspace | 智能体的"家"，所有文件都在这里 | 像员工的办公桌 |
-| 灵魂 | SOUL.md | 定义智能体的性格、语气和边界 | 像一个人的性格和价值观 |
-| 操作手册 | AGENTS.md | 告诉智能体如何工作、如何记忆 | 像岗位说明书 |
-| 记忆 | Memory | 记住你说过的话和偏好 | 像一个越来越懂你的老助理 |
-| 技能 | Skill | 教会智能体做好某件事的知识包 | 像老师傅传授的经验诀窍 |
-| 工具 | Tool | 智能体能调用的具体能力（读文件、搜索、发消息等） | 像员工手边的办公工具 |
-| 频道 | Channel | 连接 Telegram、飞书、Discord 等平台 | 像员工的多个联系方式 |
-| 提示词 | Prompt | 你给它的指令 | 像给员工安排工作 |
-| 定时任务 | Cron Job | 按时间表自动执行 | 像设了个闹钟 |
-| 心跳 | Heartbeat | 定期自动检查状态并主动汇报 | 像保安巡逻 |
-| 子智能体 | Sub-agent | 派出"分身"并行处理 | 像带了一个小团队 |
-| 上下文 | Context | 智能体当前能"看到"的所有信息 | 像工作记忆，桌上摊开的文件 |
-| 节点 | Node | 把手机/平板连接为智能体的"眼睛和手" | 像给员工配了手机 |
-
-</details>
-
-### 如何阅读本合集？
-
-每个用例都按统一格式组织：
-
-| 章节 | 内容 |
-|------|------|
-| **痛点** | 这个用例解决什么问题 |
-| **它能做什么** | 具体功能列表 |
-| **所需技能** | 需要安装哪些插件 |
-| **如何设置** | 手把手教你配置（含可复制的提示词） |
-| **实用建议** | 踩过的坑和最佳实践 |
-
-> 💡 **提示**：代码块中的英文 prompt（提示词）建议直接复制使用，效果最佳。每段 prompt 上方都有中文说明帮你理解其作用。
+> ⚠️ 本合集引用的技能和第三方依賴**未經維護者審核**。使用前請審查原始碼、檢查權限，避免硬編碼憑證。
 
 ---
 
-> ⚠️ **安全提醒**：本合集引用的技能和第三方依赖**未经维护者审核**。使用前请审查源代码、检查权限，避免硬编码凭证。
+## 用例目錄
 
-> 难度说明：⭐ 复制粘贴即可用 · ⭐⭐ 需要简单配置 · ⭐⭐⭐ 需要一定技术基础
+### 🇨🇳 中國特色用例
+
+> 為國內工具生態設計或適配，使用飛書、釘釘、企業微信、小紅書等平台。
+
+| 名稱 | 描述 | 難度 |
+|------|------|:---:|
+| [飛書 AI 助手](usecases/cn-feishu-ai-assistant.md) | 把 OpenClaw 部署為飛書機器人，在對話中直接觸發 AI 任務，支援文件自動化 | ⭐⭐ |
+| [釘釘 AI 助手](usecases/cn-dingtalk-ai-assistant.md) | 把 OpenClaw 部署為釘釘機器人，Stream 模式無需公網 IP | ⭐⭐ |
+| [企業微信 AI 助手](usecases/cn-wecom-ai-assistant.md) | 在企業微信中使用 AI，透過微信外掛讓個人微信也能用 | ⭐⭐ |
+| [辦公自動化套件](usecases/cn-office-automation.md) | 郵件管理、檔案整理、會議紀要、週報生成，支援 163/QQ/Outlook | ⭐⭐ |
+| [小紅書內容自動化](usecases/cn-xiaohongshu-automation.md) | 從選題、文案、封面圖到定時發布的全流程自動化 | ⭐ |
+| [多智能體協作作業系統](usecases/cn-multi-agent-operating-system.md) | 把 OpenClaw 變成專業分工、協同、穩定迭代的智能體系統 | ⭐⭐⭐ |
+| [早間簡報（適配）](usecases/custom-morning-brief.md) | 每日定時推送簡報到飛書/釘釘，支援中文新聞來源 | ⭐ |
+| [會議紀要與待辦自動化（適配）](usecases/meeting-notes-action-items.md) | 會議轉錄自動生成紀要並建立任務（飛書妙記/騰訊會議/釘釘） | ⭐⭐ |
+| [多管道 AI 客戶服務（適配）](usecases/multi-channel-customer-service.md) | 企業微信/抖音/小紅書多管道客服自動化 | ⭐⭐⭐ |
+| [播客製作流水線（適配）](usecases/podcast-production-pipeline.md) | 從選題到發布的全流程播客製作自動化（小宇宙/喜馬拉雅/B站） | ⭐⭐ |
+| [AI 財報追蹤器（適配）](usecases/earnings-tracker.md) | A 股財報追蹤，AKShare 免費資料來源 + 業績預告/快報自動化 | ⭐⭐ |
+| [開發前創意驗證器（適配）](usecases/pre-build-idea-validator.md) | 編碼前自動掃描競品（百度指數/微信指數/V2EX/少數派） | ⭐⭐ |
+
+### 📱 社群媒體
+
+| 名稱 | 描述 | 難度 |
+|------|------|:---:|
+| [每日 Reddit 摘要](usecases/daily-reddit-digest.md) | 根據你的偏好，生成喜愛的 subreddit 精選摘要 | ⭐ |
+| [每日 YouTube 摘要](usecases/daily-youtube-digest.md) | 取得關注頻道的每日新影片摘要，不錯過任何內容 | ⭐ |
+| [X 帳號分析](usecases/x-account-analysis.md) | 取得你的 X（原 Twitter）帳號的定性分析 | ⭐⭐ |
+| [多來源科技新聞摘要](usecases/multi-source-tech-news-digest.md) | 自動聚合 109+ 來源的科技新聞，支援品質評分和多管道分發 | ⭐⭐ |
+
+### 🎨 創意與構建
+
+| 名稱 | 描述 | 難度 |
+|------|------|:---:|
+| [目標驅動的自主任務](usecases/overnight-mini-app-builder.md) | 告訴 AI 你的目標，它自動拆解並每天執行，還能一夜造出迷你應用程式 | ⭐⭐ |
+| [YouTube 內容流水線](usecases/youtube-content-pipeline.md) | 為 YouTube 頻道自動化影片創意發掘、研究和追蹤 | ⭐⭐⭐ |
+| [多智能體內容工廠](usecases/content-factory.md) | 在 Discord 中執行研究、寫作、設計三個智能體組成的內容流水線 | ⭐⭐⭐ |
+
+### ⚙️ 基礎設施與 DevOps
+
+| 名稱 | 描述 | 難度 |
+|------|------|:---:|
+| [n8n 工作流程編排](usecases/n8n-workflow-orchestration.md) | 透過 webhook 將 API 呼叫委託給 n8n，智能體從不接觸憑證 | ⭐⭐⭐ |
+| [Opik 可觀測性追蹤](usecases/opik-openclaw-observability.md) | 將 OpenClaw 執行鏈路接入 Opik，統一查看 LLM/工具/子智能體追蹤與成本 | ⭐⭐ |
+| [自癒家庭伺服器](usecases/self-healing-home-server.md) | 執行始終在線的基礎設施智能體，自動發現並修復故障 | ⭐⭐⭐ |
+
+### ⚡ 生產力
+
+| 名稱 | 描述 | 難度 |
+|------|------|:---:|
+| [收件匣整理](usecases/inbox-declutter.md) | 自動彙總電子報並發送摘要郵件，告別郵件堆積 | ⭐ |
+| [第二大腦](usecases/second-brain.md) | 隨手發訊息記住一切，在自訂儀表板中隨時搜尋 | ⭐ |
+| [健康與症狀追蹤器](usecases/health-symptom-tracker.md) | 追蹤食物攝入和症狀以識別過敏誘因，帶有定期簽到提醒 | ⭐ |
+| [個人 CRM](usecases/personal-crm.md) | 自動從郵件和日曆中發現並追蹤聯絡人，支援自然語言查詢 | ⭐⭐ |
+| [基於電話的個人助理](usecases/phone-based-personal-assistant.md) | 透過電話或簡訊從任何手機存取你的 AI 智能體 | ⭐⭐ |
+| [多管道個人助理](usecases/multi-channel-assistant.md) | 一個 AI 助理統管 Telegram、Slack、郵件和日曆 | ⭐⭐ |
+| [家庭日曆與家務助理](usecases/family-calendar-household-assistant.md) | 聚合所有家庭日曆到早間簡報，監控訊息取得預約，管理庫存 | ⭐⭐ |
+| [Todoist 任務管理器](usecases/todoist-task-manager.md) | 將 AI 推理和進度日誌同步到 Todoist，即時看到智能體在做什麼 | ⭐⭐ |
+| [活動嘉賓確認](usecases/event-guest-confirmation.md) | 自動逐一致電嘉賓確認出席、收集備注並編譯摘要 | ⭐⭐ |
+| [專案狀態管理](usecases/project-state-management.md) | 事件驅動的專案追蹤，自動擷取上下文，取代靜態看板 | ⭐⭐⭐ |
+| [動態儀表板](usecases/dynamic-dashboard.md) | 即時儀表板，子智能體並行從 API、資料庫和社群媒體取得資料 | ⭐⭐⭐ |
+| [自主專案管理](usecases/autonomous-project-management.md) | 使用 STATE.yaml 模式協調多智能體專案，無需人工編排 | ⭐⭐⭐ |
+| [多智能體專業團隊](usecases/multi-agent-team.md) | 4 個專業 AI 智能體（戰略＋開發＋行銷＋商務）作為你的虛擬團隊 | ⭐⭐⭐ |
+
+### 🔬 研究與學習
+
+| 名稱 | 描述 | 難度 |
+|------|------|:---:|
+| [個人知識庫（RAG）](usecases/knowledge-base-rag.md) | 把 URL、推文和文章拖入聊天，構建可語義搜尋的知識庫 | ⭐⭐ |
+| [語義記憶搜尋](usecases/semantic-memory-search.md) | 為 OpenClaw 記憶檔案添加向量驅動的語義搜尋 | ⭐⭐ |
+| [市場研究與產品工廠](usecases/market-research-product-factory.md) | 從 Reddit 和 X 挖掘真實痛點，讓 AI 構建解決方案 MVP | ⭐⭐⭐ |
+
+### 📈 金融與交易
+
+| 名稱 | 描述 | 難度 |
+|------|------|:---:|
+| [Polymarket 自動駕駛](usecases/polymarket-autopilot.md) | 自動化預測市場模擬交易，帶回測、策略分析和每日績效報告 | ⭐⭐⭐ |
 
 ---
 
-## 🇨🇳 中国特色用例
+## 本地開發（網站）
 
-> 为中国工具生态设计或适配的用例，使用飞书、钉钉、企业微信、小红书等国内平台。标注"适配"的用例在国际版基础上增加了国内方案。
+本倉庫同時包含一個 [Astro](https://astro.build) 靜態網站，可在本地預覽所有用例。
 
-| 名称 | 描述 | 难度 |
-|------|------|:---:|
-| [飞书 AI 助手](usecases/cn-feishu-ai-assistant.md) | 把 OpenClaw 部署为飞书机器人，在对话中直接触发 AI 任务，支持文档自动化 | ⭐⭐ |
-| [钉钉 AI 助手](usecases/cn-dingtalk-ai-assistant.md) | 把 OpenClaw 部署为钉钉机器人，Stream 模式无需公网 IP | ⭐⭐ |
-| [企业微信 AI 助手](usecases/cn-wecom-ai-assistant.md) | 在企业微信中使用 AI，通过微信插件让个人微信也能用 | ⭐⭐ |
-| [早间简报（适配）](usecases/custom-morning-brief.md) | 每日定时推送简报到飞书/钉钉，支持中文新闻源和 cron 配置 | ⭐ |
-| [办公自动化套件](usecases/cn-office-automation.md) | 邮件管理、文件整理、会议纪要、周报生成，支持 163/QQ/Outlook | ⭐⭐ |
-| [会议纪要与待办自动化（适配）](usecases/meeting-notes-action-items.md) | 会议转录自动生成纪要并创建任务（飞书妙记/腾讯会议/钉钉） | ⭐⭐ |
-| [多渠道 AI 客户服务（适配）](usecases/multi-channel-customer-service.md) | 企业微信/抖音/小红书多渠道客服自动化 | ⭐⭐⭐ |
-| [小红书内容自动化](usecases/cn-xiaohongshu-automation.md) | 从选题、文案、封面图到定时发布的全流程自动化 | ⭐ |
-| [播客制作流水线（适配）](usecases/podcast-production-pipeline.md) | 从选题到发布的全流程播客制作自动化（小宇宙/喜马拉雅/B站） | ⭐⭐ |
-| [AI 财报追踪器（适配）](usecases/earnings-tracker.md) | A 股财报追踪，AKShare 免费数据源 + 业绩预告/快报自动化 | ⭐⭐ |
-| [开发前创意验证器（适配）](usecases/pre-build-idea-validator.md) | 编码前自动扫描竞品（百度指数/微信指数/V2EX/少数派） | ⭐⭐ |
-| [多智能体协作操作系统](usecases/cn-multi-agent-operating-system.md) | 把 OpenClaw 变成专业分工、协同、稳定迭代的智能体系统 | ⭐⭐⭐ |
+```bash
+npm install
+npm run dev      # 開發模式，http://localhost:4321
+npm run build    # 產生靜態檔案到 dist/
+npm run preview  # 預覽建置結果
+```
+
+**部署**：連接 GitHub 倉庫至 Cloudflare Pages 或 Vercel，Build command 設為 `npm run build`，Output directory 設為 `dist`。
 
 ---
 
-## 社交媒体
+## 貢獻
 
-> 自动聚合你关心的内容，告别信息焦虑
+歡迎提交經過驗證的真實用例，詳見 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
-| 名称 | 描述 | 难度 |
-|------|------|:---:|
-| [每日 Reddit 摘要](usecases/daily-reddit-digest.md) | 根据你的偏好，生成你喜爱的 subreddit 精选摘要 | ⭐ |
-| [每日 YouTube 摘要](usecases/daily-youtube-digest.md) | 获取你关注频道的每日新视频摘要，不错过任何内容 | ⭐ |
-| [X 账号分析](usecases/x-account-analysis.md) | 获取你的 X（原 Twitter）账号的定性分析 | ⭐⭐ |
-| [多源科技新闻摘要](usecases/multi-source-tech-news-digest.md) | 自动聚合 109+ 来源的科技新闻，支持质量评分和多渠道分发 | ⭐⭐ |
-
-## 创意与构建
-
-> 让 AI 智能体帮你创作内容、从零构建产品
-
-| 名称 | 描述 | 难度 |
-|------|------|:---:|
-| [目标驱动的自主任务](usecases/overnight-mini-app-builder.md) | 告诉 AI 你的目标，它自动拆解并每天执行，还能一夜之间造出迷你应用 | ⭐⭐ |
-| [YouTube 内容流水线](usecases/youtube-content-pipeline.md) | 为 YouTube 频道自动化视频创意发掘、研究和追踪 | ⭐⭐⭐ |
-| [多智能体内容工厂](usecases/content-factory.md) | 在 Discord 中运行研究、写作、设计三个智能体组成的内容流水线 | ⭐⭐⭐ |
-
-## 基础设施与 DevOps
-
-> 让服务器自己修自己，你只管睡觉
-
-| 名称 | 描述 | 难度 |
-|------|------|:---:|
-| [n8n 工作流编排](usecases/n8n-workflow-orchestration.md) | 通过 webhook 将 API 调用委托给 n8n 工作流，智能体从不接触凭证 | ⭐⭐⭐ |
-| [Opik 可观测性追踪](usecases/opik-openclaw-observability.md) | 将 OpenClaw 运行链路接入 Opik，统一查看 LLM/工具/子智能体追踪，并监控 token 与成本 | ⭐⭐ |
-| [自愈家庭服务器](usecases/self-healing-home-server.md) | 运行始终在线的基础设施智能体，自动发现并修复故障 | ⭐⭐⭐ |
-
-## 生产力
-
-> 把重复性工作交给 AI，专注于真正重要的事
-
-| 名称 | 描述 | 难度 |
-|------|------|:---:|
-| [定制早间简报](usecases/custom-morning-brief.md) | 每天醒来就有专属简报——新闻、任务、内容草稿、AI 推荐操作（国内适配） | ⭐ |
-| [收件箱整理](usecases/inbox-declutter.md) | 自动总结新闻通讯并发送摘要邮件，告别邮件堆积 | ⭐ |
-| [第二大脑](usecases/second-brain.md) | 随手发消息记住一切，在自定义仪表板中随时搜索 | ⭐ |
-| [个人 CRM](usecases/personal-crm.md) | 自动从邮件和日历中发现并追踪联系人，支持自然语言查询 | ⭐⭐ |
-| [健康与症状追踪器](usecases/health-symptom-tracker.md) | 追踪食物摄入和症状以识别过敏诱因，带有定期签到提醒 | ⭐ |
-| [基于电话的个人助理](usecases/phone-based-personal-assistant.md) | 通过电话或短信从任何手机访问你的 AI 智能体 | ⭐⭐ |
-| [多渠道个人助理](usecases/multi-channel-assistant.md) | 一个 AI 助理统管 Telegram、Slack、邮件和日历 | ⭐⭐ |
-| [家庭日历与家务助理](usecases/family-calendar-household-assistant.md) | 聚合所有家庭日历到早间简报，监控消息获取预约，管理家庭库存 | ⭐⭐ |
-| [Todoist 任务管理器](usecases/todoist-task-manager.md) | 将 AI 推理和进度日志同步到 Todoist，实时看到智能体在做什么 | ⭐⭐ |
-| [多渠道 AI 客户服务](usecases/multi-channel-customer-service.md) | WhatsApp + Instagram + 邮件 + Google 评价统一到 AI 收件箱（国内适配） | ⭐⭐⭐ |
-| [活动嘉宾确认](usecases/event-guest-confirmation.md) | 自动逐一呼叫嘉宾确认出席、收集备注并编译摘要 | ⭐⭐ |
-| [项目状态管理](usecases/project-state-management.md) | 事件驱动的项目追踪，自动捕获上下文，取代静态看板 | ⭐⭐⭐ |
-| [动态仪表板](usecases/dynamic-dashboard.md) | 实时仪表板，子智能体并行从 API、数据库和社交媒体获取数据 | ⭐⭐⭐ |
-| [自主项目管理](usecases/autonomous-project-management.md) | 使用 STATE.yaml 模式协调多智能体项目，无需人工编排 | ⭐⭐⭐ |
-| [多智能体专业团队](usecases/multi-agent-team.md) | 4 个专业 AI 智能体（战略+开发+营销+商务）作为你的虚拟团队 | ⭐⭐⭐ |
-
-## 研究与学习
-
-> 让 AI 帮你整理知识、追踪市场、发现机会
-
-| 名称 | 描述 | 难度 |
-|------|------|:---:|
-| [个人知识库 (RAG)](usecases/knowledge-base-rag.md) | 把 URL、推文和文章拖入聊天，构建可语义搜索的知识库 | ⭐⭐ |
-| [AI 财报追踪器](usecases/earnings-tracker.md) | 追踪科技/AI 公司财报，自动化预览、提醒和详细摘要（国内适配） | ⭐⭐ |
-| [语义记忆搜索](usecases/semantic-memory-search.md) | 为 OpenClaw 记忆文件添加向量驱动的语义搜索 | ⭐⭐ |
-| [市场研究与产品工厂](usecases/market-research-product-factory.md) | 从 Reddit 和 X 挖掘真实痛点，让 AI 构建解决方案 MVP | ⭐⭐⭐ |
-| [开发前创意验证器](usecases/pre-build-idea-validator.md) | 编码前自动扫描竞品，返回竞争度评分（国内适配） | ⭐⭐ |
-
-## 金融与交易
-
-> 用 AI 在预测市场上做模拟交易和策略回测
-
-| 名称 | 描述 | 难度 |
-|------|------|:---:|
-| [Polymarket 自动驾驶](usecases/polymarket-autopilot.md) | 自动化预测市场模拟交易，带回测、策略分析和每日绩效报告 | ⭐⭐⭐ |
-
-
+**收錄標準**：真實跑通 + 多源驗證 + 讀者照做能複現。不接受未測試的用例和加密貨幣相關內容。
 
 ---
 
-## 🌟 为什么选择这个合集？
+## 相關資源
 
-| | 自己摸索 | 看碎片教程 | **本合集** |
-|---|:---:|:---:|:---:|
-| 用例经过真实验证 | ❌ 不确定能否跑通 | ⚠️ 质量参差不齐 | ✅ 每个用例有来源佐证 |
-| 国内生态适配 | ❌ 需自行替换工具 | ❌ 多为海外方案 | ✅ 飞书/钉钉/企业微信/小红书 |
-| 帮你选对方向 | ❌ skill 太多无从下手 | ⚠️ 只讲功能不讲场景 | ✅ 按真实场景组织，难度分级 |
-| 照做就能跑通 | ❌ 缺配置和提示词 | ⚠️ 步骤常不完整 | ✅ 完整步骤 + 可复制的提示词 |
-| 从零入门 | ❌ 默认你已经会了 | ⚠️ 各说各的 | ✅ 核心概念解释 + 新手指南 |
-
----
-
-## 🤝 贡献
-
-我们欢迎经过验证的真实用例。详见 [CONTRIBUTING.md](CONTRIBUTING.md)。
-
-- **提交国内生态用例**（飞书、钉钉、企业微信、小红书等）
-- **适配国际用例**（在已有用例基础上增加国内方案）
-- **改进现有内容**（补充实践经验、修正过时信息）
-
-> 收录标准：真实跑通 + 多源验证 + 读者照做能复现。不接受未测试的用例和加密货币相关内容。
-
----
-
-## 📌 相关资源
-
-- [OpenClaw 官方仓库](https://github.com/openclaw/openclaw) — 安装和官方文档
-- [ClawHub 技能市场](https://clawhub.ai) — 浏览和安装技能
+- [OpenClaw 官方倉庫](https://github.com/openclaw/openclaw) — 安裝和官方文件
+- [ClawHub 技能市場](https://clawhub.ai) — 瀏覽和安裝技能
+- [官方中文教學](https://docs.openclaw.ai/zh-CN)
 
 ---
 
 <div align="center">
 
-**觉得有用？请给个 ⭐ Star 支持一下，让更多中文用户发现这个合集！**
+**覺得有用？請給個 ⭐ Star，讓更多中文使用者發現這個合集！**
 
 </div>

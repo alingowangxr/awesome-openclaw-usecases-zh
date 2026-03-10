@@ -1,22 +1,35 @@
+---
+title: "每日 Reddit 摘要"
+description: "每天執行一次每日摘要，為你提供最喜歡的 Reddit 子版塊中表現最好的貼文。"
+category: "研究與學習"
+difficulty: 1
+tags:
+  - Reddit
+  - 摘要
+  - 新聞
+integrations: []
+featured: false
+---
+
 # 每日 Reddit 摘要
-每天运行一次每日摘要，为你提供最喜欢的子版块中表现最好的帖子。
+每天執行一次每日摘要，為你提供最喜歡的子版塊中表現最好的貼文。
 
-适用场景：
+適用場景：
 
-• 浏览子版块（热门/最新/置顶帖子）
-• 按主题搜索帖子
-• 拉取评论线程以获取上下文
-• 建立帖子清单，以便后续手动查看/回复
+• 瀏覽子版塊（熱門/最新/置頂貼文）
+• 依主題搜尋貼文
+• 拉取評論串以取得上下文
+• 建立貼文清單，以便後續手動檢視/回覆
 
-> 这是只读的。不支持发帖、投票或评论。
+> 這是唯讀的。不支援發文、投票或評論。
 
 ## 所需技能
-[reddit-readonly](https://clawhub.ai/buksan1950/reddit-readonly) 技能。无需认证。
+[reddit-readonly](https://clawhub.ai/buksan1950/reddit-readonly) 技能。無需認證。
 
-## 如何设置
-安装该技能后，向你的 OpenClaw 发送以下提示：
+## 如何設定
+安裝該技能後，向你的 OpenClaw 發送以下提示：
 
-以下提示词可直接使用：
+以下提示詞可直接使用：
 ```text
 I want you to give me the top performing posts from the following subreddits.
 <paste the list here>
@@ -26,4 +39,3 @@ Every day at 5pm, run this process and give me the digest.
 
 ---
 
-**原文链接**：[English Version](https://github.com/AlexAnys/awesome-openclaw-usecases/blob/main/usecases/daily-reddit-digest.md)

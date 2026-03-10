@@ -1,26 +1,39 @@
-# 健康与症状追踪器
+---
+title: "健康與症狀追蹤器"
+description: "識別食物敏感性和健康規律，透過提醒記錄症狀並自動分析長期趨勢。"
+category: "生產力"
+difficulty: 1
+tags:
+  - 健康管理
+  - 症狀追蹤
+  - 食物敏感
+integrations: []
+featured: false
+---
 
-识别食物敏感性需要长期持续记录，但这种记录非常繁琐难以维持。你需要提醒来记录，也需要分析来发现模式。
+# 健康與症狀追蹤器
 
-这个工作流自动追踪食物和症状：
+識別食物敏感性需要長期持續記錄，但這種記錄非常繁瑣難以維持。你需要提醒來記錄，也需要分析來發現規律。
 
-- 在专用的 Telegram 话题中发送你的饮食和症状信息，OpenClaw 会自动记录所有内容并附带时间戳
-- 每天 3 次提醒（早上、中午、晚上）提示你记录餐食
-- 随着时间推移，分析模式以识别潜在的触发因素
+這個工作流自動追蹤食物和症狀：
+
+- 在專用的 Telegram 話題中發送你的飲食和症狀資訊，OpenClaw 會自動記錄所有內容並附帶時間戳記
+- 每天 3 次提醒（早上、中午、晚上）提示你記錄餐食
+- 隨著時間推移，分析規律以識別潛在的觸發因素
 
 ## 所需技能
 
-- 定时任务（cron job）用于提醒
-- Telegram 话题用于记录
-- 文件存储（markdown 日志文件）
+- 定時任務（cron job）用於提醒
+- Telegram 話題用於記錄
+- 檔案儲存（markdown 日誌檔案）
 
-## 如何设置
+## 如何設定
 
-1. 在 Telegram 中创建一个名为 "health-tracker"（或类似名称）的话题。
-2. 创建日志文件：`~/clawd/memory/health-log.md`
+1. 在 Telegram 中建立一個名為 "health-tracker"（或類似名稱）的話題。
+2. 建立日誌檔案：`~/clawd/memory/health-log.md`
 3. 指示 OpenClaw：
 
-以下提示词配置食物和症状的自动追踪与周度分析：
+以下提示詞設定食物和症狀的自動追蹤與週度分析：
 
 ```text
 When I message in the "health-tracker" topic:
@@ -41,8 +54,7 @@ Every Sunday, analyze the past week's log and identify patterns:
 Post the analysis to the health-tracker topic.
 ```
 
-4. 可选：为 OpenClaw 添加一个记忆文件，用于追踪已知的触发因素，并随着模式的出现不断更新。
+4. 可選：為 OpenClaw 新增一個記憶檔案，用於追蹤已知的觸發因素，並隨著規律的出現不斷更新。
 
 ---
 
-**原文链接**：[English Version](https://github.com/AlexAnys/awesome-openclaw-usecases/blob/main/usecases/health-symptom-tracker.md)

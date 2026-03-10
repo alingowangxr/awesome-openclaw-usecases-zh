@@ -1,0 +1,223 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import UsecaseCard from '../../components/UsecaseCard.astro';
+
+const usecases = await getCollection('usecases');
+const categories = ['中國特色', '社群媒體', '創意與構建', '基礎設施與DevOps', '生產力', '研究與學習', '金融與交易'];
+
+// 排序：featured 優先，再依 title 排序
+const sorted = [...usecases].sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  return a.data.title.localeCompare(b.data.title, 'zh-TW');
+});
+---
+
+<Layout title="全部用例" description="瀏覽所有 OpenClaw AI 智能體用例，支援分類和難度篩選。">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- 頁面標題 -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">全部用例</h1>
+      <p class="text-gray-500">瀏覽所有經過驗證的 OpenClaw AI 智能體使用場景</p>
+    </div>
+
+    <!-- 篩選列 -->
+    <div class="bg-white rounded-xl border border-gray-200 p-5 mb-6 space-y-4">
+      <!-- 搜尋框 -->
+      <div>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="搜尋用例名稱或描述..."
+          class="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400"
+        />
+      </div>
+
+      <!-- 分類篩選 -->
+      <div>
+        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">分類</p>
+        <div class="flex flex-wrap gap-2" id="category-filters">
+          <button
+            class="filter-btn category-btn px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors bg-indigo-600 text-white border-indigo-600"
+            data-value="all"
+          >
+            全部
+          </button>
+          {categories.map(cat => (
+            <button
+              class="filter-btn category-btn px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors bg-white text-gray-600 border-gray-300 hover:border-indigo-300 hover:text-indigo-600"
+              data-value={cat}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- 難度篩選 -->
+      <div>
+        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">難度</p>
+        <div class="flex flex-wrap gap-2" id="difficulty-filters">
+          <button
+            class="filter-btn difficulty-btn px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors bg-indigo-600 text-white border-indigo-600"
+            data-value="all"
+          >
+            全部
+          </button>
+          <button
+            class="filter-btn difficulty-btn px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors bg-white text-gray-600 border-gray-300 hover:border-green-300 hover:text-green-600"
+            data-value="1"
+          >
+            ⭐ 新手
+          </button>
+          <button
+            class="filter-btn difficulty-btn px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors bg-white text-gray-600 border-gray-300 hover:border-yellow-300 hover:text-yellow-600"
+            data-value="2"
+          >
+            ⭐⭐ 中級
+          </button>
+          <button
+            class="filter-btn difficulty-btn px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors bg-white text-gray-600 border-gray-300 hover:border-red-300 hover:text-red-600"
+            data-value="3"
+          >
+            ⭐⭐⭐ 進階
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 結果數量 -->
+    <p class="text-sm text-gray-500 mb-4" id="result-count">
+      顯示 <span id="count-number">{usecases.length}</span> 個用例
+    </p>
+
+    <!-- 用例卡片格狀排列 -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="usecases-grid">
+      {sorted.map(u => (
+        <div
+          class="usecase-item"
+          data-category={u.data.category}
+          data-difficulty={u.data.difficulty}
+          data-title={u.data.title.toLowerCase()}
+          data-desc={u.data.description.toLowerCase()}
+        >
+          <UsecaseCard
+            id={u.id}
+            title={u.data.title}
+            description={u.data.description}
+            category={u.data.category}
+            difficulty={u.data.difficulty}
+            tags={u.data.tags}
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- 無結果提示 -->
+    <div id="no-results" class="hidden text-center py-20">
+      <p class="text-4xl mb-4">🔍</p>
+      <p class="text-gray-500 font-medium">找不到符合條件的用例</p>
+      <p class="text-sm text-gray-400 mt-1">試試調整篩選條件</p>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  let selectedCategory = 'all';
+  let selectedDifficulty = 'all';
+  let searchQuery = '';
+
+  function applyFilters() {
+    const items = document.querySelectorAll<HTMLElement>('.usecase-item');
+    let visibleCount = 0;
+
+    items.forEach(item => {
+      const cat = item.dataset.category ?? '';
+      const diff = item.dataset.difficulty ?? '';
+      const title = item.dataset.title ?? '';
+      const desc = item.dataset.desc ?? '';
+
+      const matchCategory = selectedCategory === 'all' || cat === selectedCategory;
+      const matchDifficulty = selectedDifficulty === 'all' || diff === selectedDifficulty;
+      const matchSearch = searchQuery === '' || title.includes(searchQuery) || desc.includes(searchQuery);
+
+      if (matchCategory && matchDifficulty && matchSearch) {
+        item.style.display = '';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    const countEl = document.getElementById('count-number');
+    if (countEl) countEl.textContent = String(visibleCount);
+
+    const noResults = document.getElementById('no-results');
+    const grid = document.getElementById('usecases-grid');
+    if (noResults && grid) {
+      if (visibleCount === 0) {
+        noResults.classList.remove('hidden');
+        grid.style.display = 'none';
+      } else {
+        noResults.classList.add('hidden');
+        grid.style.display = '';
+      }
+    }
+  }
+
+  function setActiveButton(group: NodeListOf<HTMLButtonElement>, value: string) {
+    group.forEach(btn => {
+      if (btn.dataset.value === value) {
+        btn.className = btn.className
+          .replace('bg-white text-gray-600 border-gray-300', '')
+          .replace('hover:border-indigo-300 hover:text-indigo-600', '')
+          .replace('hover:border-green-300 hover:text-green-600', '')
+          .replace('hover:border-yellow-300 hover:text-yellow-600', '')
+          .replace('hover:border-red-300 hover:text-red-600', '')
+          .trim();
+        btn.classList.add('bg-indigo-600', 'text-white', 'border-indigo-600');
+        btn.classList.remove('bg-white', 'text-gray-600', 'border-gray-300');
+      } else {
+        btn.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-600');
+        btn.classList.add('bg-white', 'text-gray-600', 'border-gray-300');
+      }
+    });
+  }
+
+  // 分類篩選
+  const categoryBtns = document.querySelectorAll<HTMLButtonElement>('.category-btn');
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedCategory = btn.dataset.value ?? 'all';
+      setActiveButton(categoryBtns, selectedCategory);
+      applyFilters();
+    });
+  });
+
+  // 難度篩選
+  const difficultyBtns = document.querySelectorAll<HTMLButtonElement>('.difficulty-btn');
+  difficultyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedDifficulty = btn.dataset.value ?? 'all';
+      setActiveButton(difficultyBtns, selectedDifficulty);
+      applyFilters();
+    });
+  });
+
+  // 搜尋框
+  const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+  searchInput?.addEventListener('input', () => {
+    searchQuery = searchInput.value.toLowerCase().trim();
+    applyFilters();
+  });
+
+  // 讀取 URL 參數自動篩選（支援 ?category=xxx）
+  const params = new URLSearchParams(window.location.search);
+  const urlCategory = params.get('category');
+  if (urlCategory) {
+    selectedCategory = urlCategory;
+    setActiveButton(categoryBtns, selectedCategory);
+    applyFilters();
+  }
+</script>

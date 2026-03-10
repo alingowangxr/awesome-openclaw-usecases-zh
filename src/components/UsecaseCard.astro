@@ -1,0 +1,51 @@
+---
+import CategoryBadge from './CategoryBadge.astro';
+import DifficultyBadge from './DifficultyBadge.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  difficulty: number;
+  tags: string[];
+}
+
+const { id, title, description, category, difficulty, tags } = Astro.props;
+const visibleTags = tags.slice(0, 3);
+---
+
+<a
+  href={`/usecases/${id}`}
+  class="block bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md hover:border-indigo-200 transition-all duration-200 group"
+>
+  <!-- 分類與難度 -->
+  <div class="flex items-center gap-2 flex-wrap mb-3">
+    <CategoryBadge category={category} />
+    <DifficultyBadge difficulty={difficulty} />
+  </div>
+
+  <!-- 標題 -->
+  <h3 class="text-base font-semibold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors line-clamp-2">
+    {title}
+  </h3>
+
+  <!-- 描述 -->
+  <p class="text-sm text-gray-500 mb-4 line-clamp-2 leading-relaxed">
+    {description}
+  </p>
+
+  <!-- Tags -->
+  {visibleTags.length > 0 && (
+    <div class="flex items-center gap-1.5 flex-wrap">
+      {visibleTags.map(tag => (
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-100 text-gray-600">
+          {tag}
+        </span>
+      ))}
+      {tags.length > 3 && (
+        <span class="text-xs text-gray-400">+{tags.length - 3}</span>
+      )}
+    </div>
+  )}
+</a>

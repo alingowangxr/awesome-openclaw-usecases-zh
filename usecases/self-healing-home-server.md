@@ -1,46 +1,61 @@
-# 自愈式家庭服务器与基础设施管理
+---
+title: "自愈式家庭伺服器與基礎設施管理"
+description: "讓 AI 智能體 7x24 小時監控和自動修復家庭伺服器問題，包括憑證過期、磁碟空間和服務崩潰。"
+category: "基礎設施與DevOps"
+difficulty: 3
+tags:
+  - 家庭伺服器
+  - 自動修復
+  - 監控
+integrations:
+  - Docker
+  - Kubernetes
+featured: true
+---
 
-运行家庭服务器意味着 7x24 小时随时待命处理自己的基础设施问题。服务在凌晨 3 点宕机、证书默默过期、磁盘空间耗尽、Pod 进入崩溃循环（crash-loop）——而这些都发生在你睡觉或外出的时候。
+# 自愈式家庭伺服器與基礎設施管理
 
-这个用例将 OpenClaw 变成一个持久运行的基础设施智能体（agent），拥有 SSH 访问权限、自动化定时任务（cron job），以及在你发现问题之前就检测、诊断和修复问题的能力。
+執行家庭伺服器意味著 7x24 小時隨時待命處理自己的基礎設施問題。服務在凌晨 3 點宕機、憑證默默過期、磁碟空間耗盡、Pod 進入崩潰循環（crash-loop）——而這些都發生在你睡覺或外出的時候。
 
-## 痛点
+這個用例將 OpenClaw 變成一個持久執行的基礎設施智能體（agent），擁有 SSH 存取權限、自動化定時任務（cron job），以及在你發現問題之前就偵測、診斷和修復問題的能力。
 
-家庭实验室运维者和自托管用户面临持续的维护负担：
+## 痛點
 
-- 健康检查、日志监控和告警需要手动设置和持续关注
-- 当出现故障时，你必须 SSH 登录、诊断并修复——通常还是在手机上操作
-- 基础设施即代码（Infrastructure-as-Code）工具（Terraform、Ansible、Kubernetes 清单）需要定期更新
-- 关于你的配置的知识存储在你的脑子里，而不是可搜索的文档中
-- 日常任务（邮件分类、部署检查、安全审计）每周要消耗数小时
+家庭實驗室運維者和自託管用戶面臨持續的維護負擔：
+
+- 健康檢查、日誌監控和告警需要手動設定和持續關注
+- 當出現故障時，你必須 SSH 登入、診斷並修復——通常還是在手機上操作
+- 基礎設施即程式碼（Infrastructure-as-Code）工具（Terraform、Ansible、Kubernetes 清單）需要定期更新
+- 關於你的設定的知識儲存在你的腦子裡，而不是可搜尋的文件中
+- 日常任務（郵件分類、部署檢查、安全審計）每週要消耗數小時
 
 ## 功能概述
 
-- **自动化健康监控**：基于定时任务检查服务、部署和系统资源
-- **自我修复**：通过健康检查检测问题，并自主应用修复（重启 Pod、扩展资源、修复配置）
-- **基础设施管理**：编写并应用 Terraform、Ansible 和 Kubernetes 清单
-- **晨间简报**：每日系统健康状况、日历、天气和任务板状态摘要
-- **邮件分类**：扫描收件箱，标记可操作项目，归档噪音
-- **知识提取**：将笔记和对话导出处理为结构化、可搜索的知识库
-- **博客发布管线**：草稿 → 生成横幅图 → 发布到 CMS → 部署到托管平台——全自动化
-- **安全审计**：定期扫描硬编码密钥、特权容器和过度宽松的访问权限
+- **自動化健康監控**：基於定時任務檢查服務、部署和系統資源
+- **自我修復**：透過健康檢查偵測問題，並自主套用修復（重啟 Pod、擴展資源、修復設定）
+- **基礎設施管理**：編寫並套用 Terraform、Ansible 和 Kubernetes 清單
+- **晨間簡報**：每日系統健康狀況、日曆、天氣和任務板狀態摘要
+- **郵件分類**：掃描收件匣，標記可操作項目，歸檔雜訊
+- **知識提取**：將筆記和對話匯出處理為結構化、可搜尋的知識庫
+- **部落格發布管線**：草稿 → 生成橫幅圖 → 發布到 CMS → 部署到託管平台——全自動化
+- **安全審計**：定期掃描硬編碼金鑰、特權容器和過度寬鬆的存取權限
 
 ## 所需技能
 
-- `ssh` 访问家庭网络机器
-- `kubectl`，用于 Kubernetes 集群管理
-- `terraform` 和 `ansible`，用于基础设施即代码
-- `1password` CLI，用于密钥管理
-- `gog` CLI，用于邮件访问
-- 日历 API 访问
-- Obsidian vault 或笔记目录（用于知识库）
-- `openclaw doctor`，用于自我诊断
+- `ssh` 存取家庭網路機器
+- `kubectl`，用於 Kubernetes 叢集管理
+- `terraform` 和 `ansible`，用於基礎設施即程式碼
+- `1password` CLI，用於金鑰管理
+- `gog` CLI，用於郵件存取
+- 日曆 API 存取
+- Obsidian vault 或筆記目錄（用於知識庫）
+- `openclaw doctor`，用於自我診斷
 
-## 如何设置
+## 如何設定
 
-### 1. 核心智能体配置
+### 1. 核心智能體設定
 
-为你的智能体命名并在 AGENTS.md 中定义其访问范围：
+為你的智能體命名並在 AGENTS.md 中定義其存取範圍：
 
 ```text
 ## Infrastructure Agent
@@ -62,9 +77,9 @@ Rules:
 - Log all infrastructure changes to ~/logs/infra-changes.md
 ```
 
-### 2. 自动化定时任务系统
+### 2. 自動化定時任務系統
 
-此配置的核心在于计划任务系统。在 HEARTBEAT.md 中配置：
+此設定的核心在於排程任務系統。在 HEARTBEAT.md 中設定：
 
 ```text
 ## Cron Schedule
@@ -95,9 +110,9 @@ Weekly:
 - Infrastructure security audit
 ```
 
-### 3. 安全设置（关键）
+### 3. 安全設定（關鍵）
 
-这是不可妥协的。在给你的智能体 SSH 访问权限之前：
+這是不可妥協的。在給你的智能體 SSH 存取權限之前：
 
 ```text
 ## Security Checklist
@@ -126,7 +141,7 @@ Weekly:
    - All changes logged and auditable via git
 ```
 
-### 4. 晨间简报模板
+### 4. 晨間簡報模板
 
 ```text
 ## Daily Briefing Format
@@ -158,29 +173,28 @@ Generate and deliver at 8:00 AM:
 - Upcoming deadlines this week
 ```
 
-## 关键洞察
+## 關鍵洞察
 
-- **"没想到我竟然有了一台自愈式服务器"**：智能体可以运行 SSH、Terraform、Ansible 和 kubectl 命令，在你甚至还不知道有问题的时候就修复基础设施故障
-- **AI 会硬编码密钥**：这是头号安全风险。如果你不设置防护措施，智能体会毫不犹豫地将 API 密钥内联写入代码。Pre-push 钩子和密钥扫描是必须的
-- **本地优先的 Git 流程至关重要**：永远不要让智能体直接推送到公共仓库。使用私有 Gitea 实例作为暂存区，并配合 CI 扫描
-- **定时任务才是真正的产品**：计划自动化（健康检查、邮件分类、简报）比临时命令提供更多的日常价值
-- **知识提取具有复利效应**：将笔记、对话导出和邮件处理为结构化知识库，随着时间推移会越来越有价值——一位用户仅从 ChatGPT 历史记录中就提取了 49,079 个原子事实
+- **「沒想到我竟然有了一台自愈式伺服器」**：智能體可以執行 SSH、Terraform、Ansible 和 kubectl 指令，在你甚至還不知道有問題的時候就修復基礎設施故障
+- **AI 會硬編碼金鑰**：這是頭號安全風險。如果你不設定防護措施，智能體會毫不猶豫地將 API 金鑰內嵌寫入程式碼。Pre-push 鉤子和金鑰掃描是必須的
+- **本地優先的 Git 流程至關重要**：永遠不要讓智能體直接推送到公開倉庫。使用私有 Gitea 執行個體作為暫存區，並搭配 CI 掃描
+- **定時任務才是真正的產品**：排程自動化（健康檢查、郵件分類、簡報）比臨時指令提供更多的日常價值
+- **知識提取具有複利效應**：將筆記、對話匯出和郵件處理為結構化知識庫，隨著時間推移會越來越有價值——一位用戶僅從 ChatGPT 歷史記錄中就提取了 49,079 個原子事實
 
-## 灵感来源
+## 靈感來源
 
-这个用例基于 Nathan 的详细文章 ["Everything I've Done with OpenClaw (So Far)"](https://madebynathan.com/2026/02/03/everything-ive-done-with-openclaw-so-far/)，他在文中描述了自己的 OpenClaw 智能体"Reef"运行在家庭服务器上，拥有所有机器的 SSH 访问权限、一个 Kubernetes 集群、1Password 集成，以及一个包含 5,000+ 笔记的 Obsidian vault。Reef 运行着 15 个活跃的定时任务、24 个自定义脚本，并自主构建和部署了多个应用，包括一个任务管理 UI。Nathan 在第一天就遭遇 API 密钥泄露后得到的惨痛教训："AI 助手会毫不犹豫地硬编码密钥。它们有时候没有人类那样的安全直觉。"他的纵深防御安全设置（TruffleHog pre-push 钩子、本地 Gitea、CI 扫描、每日审计）对于任何尝试此模式的人来说都是必读内容。
+這個用例基於 Nathan 的詳細文章 ["Everything I've Done with OpenClaw (So Far)"](https://madebynathan.com/2026/02/03/everything-ive-done-with-openclaw-so-far/)，他在文中描述了自己的 OpenClaw 智能體「Reef」執行在家庭伺服器上，擁有所有機器的 SSH 存取權限、一個 Kubernetes 叢集、1Password 整合，以及一個包含 5,000+ 筆記的 Obsidian vault。Reef 執行著 15 個活躍的定時任務、24 個自訂腳本，並自主建構和部署了多個應用程式，包括一個任務管理 UI。Nathan 在第一天就遭遇 API 金鑰洩露後得到的慘痛教訓：「AI 助手會毫不猶豫地硬編碼金鑰。它們有時候沒有人類那樣的安全直覺。」他的縱深防禦安全設定（TruffleHog pre-push 鉤子、本地 Gitea、CI 掃描、每日審計）對於任何嘗試此模式的人來說都是必讀內容。
 
-同样在 [OpenClaw Showcase](https://openclaw.ai/showcase) 上，`@georgedagg_` 描述了类似的模式：部署监控、日志审查、配置修复和提交 PR——所有这些都是在遛狗的时候完成的。
+同樣在 [OpenClaw Showcase](https://openclaw.ai/showcase) 上，`@georgedagg_` 描述了類似的模式：部署監控、日誌審查、設定修復和提交 PR——所有這些都是在遛狗的時候完成的。
 
-## 相关链接
+## 相關連結
 
 - [Nathan 的完整文章](https://madebynathan.com/2026/02/03/everything-ive-done-with-openclaw-so-far/)
-- [OpenClaw 文档](https://github.com/openclaw/openclaw)
-- [TruffleHog（密钥扫描）](https://github.com/trufflesecurity/trufflehog)
-- [K3s（轻量级 Kubernetes）](https://k3s.io/)
-- [Gitea（自托管 Git）](https://gitea.io/)
-- [n8n（工作流自动化）](https://n8n.io/)
+- [OpenClaw 文件](https://github.com/openclaw/openclaw)
+- [TruffleHog（金鑰掃描）](https://github.com/trufflesecurity/trufflehog)
+- [K3s（輕量級 Kubernetes）](https://k3s.io/)
+- [Gitea（自託管 Git）](https://gitea.io/)
+- [n8n（工作流自動化）](https://n8n.io/)
 
 ---
 
-**原文链接**：[English Version](https://github.com/AlexAnys/awesome-openclaw-usecases/blob/main/usecases/self-healing-home-server.md)

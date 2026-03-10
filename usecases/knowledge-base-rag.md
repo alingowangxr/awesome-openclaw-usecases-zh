@@ -1,24 +1,37 @@
-# 个人知识库（RAG）
+---
+title: "個人知識庫（RAG）"
+description: "建立個人知識庫，將閱讀的文章、推文和影片資訊結構化儲存，隨時語義搜尋查詢。"
+category: "研究與學習"
+difficulty: 2
+tags:
+  - RAG
+  - 知識管理
+  - 語義搜尋
+integrations: []
+featured: true
+---
 
-你整天都在阅读文章、推文和观看视频，但总是找不到上周看到的那个东西。书签越积越多，最终变得毫无用处。
+# 個人知識庫（RAG）
 
-这个工作流从你保存的所有内容中构建一个可搜索的知识库：
+你整天都在閱讀文章、推文和觀看影片，但總是找不到上週看到的那個東西。書籤越積越多，最終變得毫無用處。
 
-- 将任何 URL 放入 Telegram 或 Slack，系统自动摄入内容（文章、推文、YouTube 字幕、PDF）
-- 对你保存的所有内容进行语义搜索：搜索"我保存了哪些关于 agent memory 的内容？"会返回带来源的排序结果
-- 可以与其他工作流联动——例如，视频创意流水线在构建调研卡片时会查询知识库中的相关已保存内容
+這個工作流從你儲存的所有內容中建構一個可搜尋的知識庫：
+
+- 將任何 URL 放入 Telegram 或 Slack，系統自動擷取內容（文章、推文、YouTube 字幕、PDF）
+- 對你儲存的所有內容進行語義搜尋：搜尋「我儲存了哪些關於 agent memory 的內容？」會回傳帶來源的排序結果
+- 可以與其他工作流聯動——例如，影片創意流水線在建構調研卡片時會查詢知識庫中的相關已儲存內容
 
 ## 所需技能
 
-- [knowledge-base](https://clawhub.ai) 技能（或使用 embedding（向量嵌入）自建 RAG（检索增强生成）系统）
-- `web_fetch`（内置）
-- 用于内容摄入的 Telegram 话题或 Slack 频道
+- [knowledge-base](https://clawhub.ai) 技能（或使用 embedding（向量嵌入）自建 RAG（檢索增強生成）系統）
+- `web_fetch`（內建）
+- 用於內容擷取的 Telegram 話題或 Slack 頻道
 
-## 如何设置
+## 如何設定
 
-1. 从 ClawdHub 安装 knowledge-base 技能。
-2. 创建一个名为 "knowledge-base" 的 Telegram 话题（或使用 Slack 频道）。
-3. 向 OpenClaw 发送以下提示词：
+1. 從 ClawdHub 安裝 knowledge-base 技能。
+2. 建立一個名為 "knowledge-base" 的 Telegram 話題（或使用 Slack 頻道）。
+3. 向 OpenClaw 發送以下提示詞：
 ```text
 When I drop a URL in the "knowledge-base" topic:
 1. Fetch the content (article, tweet, YouTube transcript, PDF)
@@ -33,8 +46,7 @@ When I ask a question in this topic:
 Also: when other workflows need research (e.g., video ideas, meeting prep), automatically query the knowledge base for relevant saved content.
 ```
 
-4. 测试一下：放入几个 URL，然后提问，例如"我有哪些关于 LLM memory 的内容？"
+4. 測試一下：放入幾個 URL，然後提問，例如「我有哪些關於 LLM memory 的內容？」
 
 ---
 
-**原文链接**：[English Version](https://github.com/AlexAnys/awesome-openclaw-usecases/blob/main/usecases/knowledge-base-rag.md)

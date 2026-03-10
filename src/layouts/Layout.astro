@@ -1,0 +1,69 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'OpenClaw AI 智能體最佳用例合集（中文版），收錄 40 個經過驗證的真實場景。' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Awesome OpenClaw 用例</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- 頂部導覽列 -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <a href="/" class="flex items-center gap-2 text-xl font-bold text-gray-900 hover:text-indigo-600 transition-colors">
+            <span>🦀</span>
+            <span>Awesome OpenClaw</span>
+          </a>
+          <!-- 右側連結 -->
+          <div class="flex items-center gap-6">
+            <a href="/usecases" class="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors">
+              用例庫
+            </a>
+            <a href="/contributing" class="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors">
+              貢獻指南
+            </a>
+            <a
+              href="https://github.com/openclaw/openclaw"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors flex items-center gap-1"
+            >
+              GitHub
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 主內容區 -->
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-8 mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+        <p>
+          Awesome OpenClaw 用例合集（中文版）&nbsp;·&nbsp;MIT 授權&nbsp;·&nbsp;受 awesome-openclaw-usecases 啟發
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

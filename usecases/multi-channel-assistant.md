@@ -1,35 +1,48 @@
-# 多渠道个人助手
+---
+title: "多渠道個人助手"
+description: "建立統一介面連線所有工具，在多個應用程式間無縫管理任務、日程、訊息和工作追蹤。"
+category: "生產力"
+difficulty: 2
+tags:
+  - 多渠道
+  - 個人助手
+  - 整合
+integrations: []
+featured: false
+---
 
-在多个应用间切换来管理任务、安排日程、发送消息和追踪工作令人精疲力竭。你需要一个统一的接口来连接所有工具。
+# 多渠道個人助手
 
-这个工作流将所有功能整合到一个 AI 助手中：
+在多個應用程式間切換來管理任務、安排日程、發送訊息和追蹤工作令人精疲力竭。你需要一個統一的介面來連線所有工具。
 
-- Telegram 作为主要交互界面，通过话题路由（不同话题对应视频创意、CRM、收入、配置等）
-- Slack 集成用于团队协作（任务分配、知识库保存、视频创意触发）
-- Google Workspace：通过聊天创建日历事件、管理邮件、上传到 Drive
-- Todoist 用于快速任务捕获
-- Asana 用于项目管理
-- 自动提醒：垃圾清运日、每周公司通讯等
+這個工作流將所有功能整合到一個 AI 助手中：
+
+- Telegram 作為主要互動介面，透過話題路由（不同話題對應影片創意、CRM、收入、設定等）
+- Slack 整合用於團隊協作（任務分配、知識庫儲存、影片創意觸發）
+- Google Workspace：透過聊天建立行事曆事件、管理郵件、上傳到 Drive
+- Todoist 用於快速任務捕獲
+- Asana 用於專案管理
+- 自動提醒：垃圾清運日、每週公司通訊等
 
 ## 所需技能
 
 - `gog` CLI（Google Workspace）
-- Slack 集成（bot + user tokens）
+- Slack 整合（bot + user tokens）
 - Todoist API 或技能
 - Asana API 或技能
-- 配置了多个话题的 Telegram 频道
+- 設定了多個話題的 Telegram 頻道
 
-## 如何设置
+## 如何設定
 
-1. 为不同场景设置 Telegram 话题：
-   - `config` — 机器人设置和调试
-   - `updates` — 状态和通知
-   - `video-ideas` — 内容管道
-   - `personal-crm` — 联系人管理
-   - `earnings` — 财务追踪
-   - `knowledge-base` — RAG（检索增强生成）数据导入和查询
+1. 為不同場景設定 Telegram 話題：
+   - `config` — 機器人設定和除錯
+   - `updates` — 狀態和通知
+   - `video-ideas` — 內容管道
+   - `personal-crm` — 聯絡人管理
+   - `earnings` — 財務追蹤
+   - `knowledge-base` — RAG（檢索增強生成）資料匯入和查詢
 
-2. 通过 OpenClaw 配置连接所有工具：
+2. 透過 OpenClaw 設定連線所有工具：
    - Google OAuth（Gmail、Calendar、Drive）
    - Slack（app + user tokens）
    - Todoist API 令牌
@@ -37,7 +50,7 @@
 
 3. 指示 OpenClaw：
 
-以下提示词配置多渠道路由和自动提醒：
+以下提示詞設定多渠道路由和自動提醒：
 
 ```text
 You are my multi-channel assistant. Route requests based on context:
@@ -62,8 +75,7 @@ Set up automated reminders:
 - Friday 3 PM: "Time to write the weekly company update"
 ```
 
-4. 逐一测试每个集成，然后测试跨工作流交互（例如，将 Slack 链接保存到知识库，然后在视频研究卡中使用它）。
+4. 逐一測試每個整合，然後測試跨工作流互動（例如，將 Slack 連結儲存到知識庫，然後在影片研究卡中使用它）。
 
 ---
 
-**原文链接**：[English Version](https://github.com/AlexAnys/awesome-openclaw-usecases/blob/main/usecases/multi-channel-assistant.md)

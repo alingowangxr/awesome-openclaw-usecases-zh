@@ -1,32 +1,45 @@
-# 目标驱动的自主任务系统
+---
+title: "目標驅動的自主任務系統"
+description: "讓 AI 智能體了解你的目標，每天主動提出推進任務，無需你開口下達指令。"
+category: "創意與構建"
+difficulty: 3
+tags:
+  - 自主任務
+  - 目標驅動
+  - Mini App
+integrations: []
+featured: false
+---
 
-你的 AI 智能体（agent）功能强大，但本质上是被动的——只有你下达指令时它才会工作。如果它能了解你的目标，并每天主动提出推进目标的任务，而无需你开口呢？
+# 目標驅動的自主任務系統
 
-这个工作流将 OpenClaw 变成一个自主驱动的"员工"。你只需一次性倾倒你的所有目标，智能体就会自主生成、安排并完成推进这些目标的任务——甚至会在一夜之间为你构建惊喜小应用。
+你的 AI 智能體（agent）功能強大，但本質上是被動的——只有你下達指令時它才會工作。如果它能了解你的目標，並每天主動提出推進目標的任務，而無需你開口呢？
+
+這個工作流將 OpenClaw 變成一個自主驅動的「員工」。你只需一次性傾倒你的所有目標，智能體就會自主產生、安排並完成推進這些目標的任務——甚至會在一夜之間為你構建驚喜小應用程式。
 
 ## 功能概述
 
-- 你将所有目标、使命和任务（个人和职业）一次性倾倒给 OpenClaw
-- 每天早上，智能体会自动生成 4-5 个可以在你的电脑上自主完成的任务
-- 任务不仅限于构建应用：还包括调研、编写脚本、开发功能、创建内容、分析竞品等
-- 智能体自行执行任务，并在它为你构建的自定义看板（Kanban board）上跟踪进度
-- 你还可以让它每晚为你构建一个惊喜小应用——一个新的 SaaS 创意、一个自动化你生活中无聊部分的工具，以 MVP（最小可行产品）的形式交付
+- 你將所有目標、使命和任務（個人和職業）一次性傾倒給 OpenClaw
+- 每天早上，智能體會自動產生 4-5 個可以在你的電腦上自主完成的任務
+- 任務不僅限於構建應用程式：還包括調研、編寫腳本、開發功能、建立內容、分析競品等
+- 智能體自行執行任務，並在它為你構建的自訂看板（Kanban board）上追蹤進度
+- 你還可以讓它每晚為你構建一個驚喜小應用程式——一個新的 SaaS 創意、一個自動化你生活中無聊部分的工具，以 MVP（最小可行產品）的形式交付
 
-## 痛点
+## 痛點
 
-大多数人有远大的目标，但难以将其分解为每日可执行的步骤。即使做到了，执行也会耗尽所有时间。这个系统将计划和执行都交给了你的 AI 智能体。你定义目的地，智能体规划每日路径并逐步执行。
+大多數人有遠大的目標，但難以將其分解為每日可執行的步驟。即使做到了，執行也會耗盡所有時間。這個系統將計畫和執行都交給了你的 AI 智能體。你定義目的地，智能體規劃每日路徑並逐步執行。
 
 ## 所需技能
 
-- Telegram 或 Discord 集成
-- `sessions_spawn` / `sessions_send`，用于自主任务执行
-- Next.js 或类似框架（用于看板——OpenClaw 会为你构建）
+- Telegram 或 Discord 整合
+- `sessions_spawn` / `sessions_send`，用於自主任務執行
+- Next.js 或類似框架（用於看板——OpenClaw 會為你構建）
 
-## 如何设置
+## 如何設定
 
-### 第一步：倾倒你的目标
+### 第一步：傾倒你的目標
 
-这是最重要的一步。把你想要实现的一切告诉 OpenClaw：
+這是最重要的一步。把你想要實現的一切告訴 OpenClaw：
 
 提示 OpenClaw：
 
@@ -50,7 +63,7 @@ Business:
 Use this context for everything you do going forward.
 ```
 
-### 第二步：设置自主每日任务
+### 第二步：設定自主每日任務
 
 提示 OpenClaw：
 
@@ -69,7 +82,7 @@ Then schedule and complete those tasks yourself. Examples:
 Track all tasks on a Kanban board. Update the board as you complete them.
 ```
 
-### 第三步：构建看板（可选）
+### 第三步：構建看板（可選）
 
 提示 OpenClaw：
 
@@ -79,23 +92,22 @@ working on. Show columns for To Do, In Progress, and Done. Update it
 in real-time as you complete tasks.
 ```
 
-## 关键洞察
+## 關鍵洞察
 
-- **目标倾倒是一切的基础**。你提供的目标上下文越丰富，智能体生成的每日任务就越好。不要有所保留。
-- 智能体会发现你自己想不到的任务。它会在你的各个目标之间建立联系，找到你可能错过的机会。
-- 看板将你的智能体变成一个可追踪的"员工"。你可以准确看到它一直在做什么，并及时调整方向。
-- 对于夜间应用构建：明确告诉它构建 MVP，不要过度复杂化。你每天早上醒来都会收到一个新惊喜。
-- 这个效果会随时间复利增长——智能体会学习哪类任务最有帮助，并自动调整。
+- **目標傾倒是一切的基礎**。你提供的目標上下文越豐富，智能體產生的每日任務就越好。不要有所保留。
+- 智能體會發現你自己想不到的任務。它會在你的各個目標之間建立連結，找到你可能錯過的機會。
+- 看板將你的智能體變成一個可追蹤的「員工」。你可以準確看到它一直在做什麼，並及時調整方向。
+- 對於夜間應用程式構建：明確告訴它構建 MVP，不要過度複雜化。你每天早上醒來都會收到一個新驚喜。
+- 這個效果會隨時間複利增長——智能體會學習哪類任務最有幫助，並自動調整。
 
-## 灵感来源
+## 靈感來源
 
-受 [Alex Finn](https://www.youtube.com/watch?v=UTCi_q6iuCM&t=414s) 及其[关于改变生活的 OpenClaw 用例视频](https://www.youtube.com/watch?v=41_TNGDDnfQ)启发。
+受 [Alex Finn](https://www.youtube.com/watch?v=UTCi_q6iuCM&t=414s) 及其[關於改變生活的 OpenClaw 用例影片](https://www.youtube.com/watch?v=41_TNGDDnfQ)啟發。
 
-## 相关链接
+## 相關連結
 
-- [OpenClaw 记忆系统](https://github.com/openclaw/openclaw)
-- [OpenClaw 子智能体文档](https://github.com/openclaw/openclaw)
+- [OpenClaw 記憶系統](https://github.com/openclaw/openclaw)
+- [OpenClaw 子智能體文件](https://github.com/openclaw/openclaw)
 
 ---
 
-**原文链接**：[English Version](https://github.com/AlexAnys/awesome-openclaw-usecases/blob/main/usecases/overnight-mini-app-builder.md)

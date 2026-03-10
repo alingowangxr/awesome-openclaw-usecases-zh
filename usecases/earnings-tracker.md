@@ -1,25 +1,39 @@
-# AI 驱动的财报追踪器
+---
+title: "AI 驅動的財報追蹤器"
+description: "自動追蹤財報資料，支援 AKShare 東方財富 巨潮資訊等國內資料源。"
+category: "金融與交易"
+difficulty: 2
+tags:
+  - 財報
+  - 股票
+  - 資料追蹤
+integrations:
+  - AKShare
+featured: true
+---
 
-> 含国内适配：AKShare / 东方财富 / 巨潮资讯
+# AI 驅動的財報追蹤器
 
-在财报季追踪数十家科技公司意味着需要查看多个信息来源并记住报告日期。你希望紧跟 AI/科技公司的财报动态，而不必手动追踪每一家公司。
+> 含國內適配：AKShare / 東方財富 / 巨潮資訊
 
-这个工作流自动化了财报追踪和推送：
+在財報季追蹤數十家科技公司意味著需要檢視多個資訊來源並記住報告日期。你希望緊跟 AI/科技公司的財報動態，而不必手動追蹤每一家公司。
 
-- 每周日预览：扫描即将到来的财报日历，将相关的科技/AI 公司发布到 Telegram
-- 你选择关注哪些公司，OpenClaw 为每个财报日期安排一次性的 cron job（定时任务）
-- 每份报告发布后，OpenClaw 搜索结果，格式化详细摘要（超预期/不及预期、关键指标、AI 亮点），并推送给你
+這個工作流自動化了財報追蹤和推送：
+
+- 每週日預覽：掃描即將到來的財報日曆，將相關的科技/AI 公司發布到 Telegram
+- 你選擇關注哪些公司，OpenClaw 為每個財報日期安排一次性的 cron job（定時任務）
+- 每份報告發布後，OpenClaw 搜尋結果，格式化詳細摘要（超預期/不及預期、關鍵指標、AI 亮點），並推送給你
 
 ## 所需技能
 
-- `web_search`（内置）
-- OpenClaw 的 cron job（定时任务）支持
-- 用于财报更新的 Telegram 话题
+- `web_search`（內建）
+- OpenClaw 的 cron job（定時任務）支援
+- 用於財報更新的 Telegram 話題
 
-## 如何设置
+## 如何設定
 
-1. 创建一个名为 "earnings" 的 Telegram 话题用于接收更新。
-2. 向 OpenClaw 发送以下提示词：
+1. 建立一個名為 "earnings" 的 Telegram 話題用於接收更新。
+2. 向 OpenClaw 發送以下提示詞：
 ```text
 Every Sunday at 6 PM, run a cron job to:
 1. Search for the upcoming week's earnings calendar for tech and AI companies
@@ -36,100 +50,99 @@ When I reply with which companies to track:
 Keep a memory of which companies I typically track so you can auto-suggest them each week.
 ```
 
-## 中国用户适配
+## 中國用戶適配
 
-A 股市场有完善的财报披露制度，而且数据获取比美股更规范。以下是针对 A 股投资者的适配方案。
+A 股市場有完善的財報披露制度，而且資料取得比美股更規範。以下是針對 A 股投資者的適配方案。
 
-### A 股 vs 美股财报机制差异
+### A 股 vs 美股財報機制差異
 
-| 维度 | 美股 | A 股 |
+| 維度 | 美股 | A 股 |
 |------|------|------|
-| 财报日历 | 公司自行公布，需依赖第三方汇总 | 交易所要求提前公布**预约披露时间表**，更规范 |
-| 发布节奏 | 季报一次性发布 | **业绩预告 → 业绩快报 → 正式报告**三阶段机制 |
-| 数据获取 | 需付费 API（Alpha Vantage 等） | 有免费开源方案（AKShare） |
+| 財報日曆 | 公司自行公布，需依賴第三方彙整 | 交易所要求提前公布**預約披露時間表**，更規範 |
+| 發布節奏 | 季報一次性發布 | **業績預告 → 業績快報 → 正式報告**三階段機制 |
+| 資料取得 | 需付費 API（Alpha Vantage 等） | 有免費開源方案（AKShare） |
 
-这意味着 A 股的财报追踪可以做得更精细——你可以在业绩预告阶段就提前获得信号。
+這意味著 A 股的財報追蹤可以做得更精細——你可以在業績預告階段就提前取得訊號。
 
-### A 股数据源推荐
+### A 股資料源推薦
 
-| 数据源 | 费用 | 说明 |
+| 資料源 | 費用 | 說明 |
 |--------|------|------|
-| **AKShare** | 免费 | 推荐首选，MIT 开源，接口最全 |
-| Tushare Pro | 积分制 | 基础免费，高级功能需积分 |
-| 东方财富 Choice | 付费 | 专业级，适合机构用户 |
-| 巨潮资讯 | 免费 | 官方披露渠道，适合获取原始公告 PDF |
+| **AKShare** | 免費 | 推薦首選，MIT 開源，介面最全 |
+| Tushare Pro | 積分制 | 基礎免費，進階功能需積分 |
+| 東方財富 Choice | 付費 | 專業級，適合機構用戶 |
+| 巨潮資訊 | 免費 | 官方披露管道，適合取得原始公告 PDF |
 
-**推荐方案：AKShare**（[GitHub](https://github.com/akfamily/akshare)，10k+ stars，MIT 许可）
+**推薦方案：AKShare**（[GitHub](https://github.com/akfamily/akshare)，10k+ stars，MIT 許可）
 
-安装：
+安裝：
 
 ```bash
 pip install akshare
 ```
 
-关键接口：
+關鍵介面：
 
-| 接口 | 用途 | 对应原用例功能 |
+| 介面 | 用途 | 對應原用例功能 |
 |------|------|---------------|
-| `stock_yysj_em(date)` | 预约披露时间表 | earnings calendar（核心） |
-| `stock_yjyg_em()` | 业绩预告数据 | 提前信号，美股无对应 |
-| `stock_yjkb_em()` | 业绩快报 | 快速业绩概览 |
-| `stock_yjbb_em()` | 正式业绩报表 | 完整财报数据 |
+| `stock_yysj_em(date)` | 預約披露時間表 | earnings calendar（核心） |
+| `stock_yjyg_em()` | 業績預告資料 | 提前訊號，美股無對應 |
+| `stock_yjkb_em()` | 業績快報 | 快速業績概覽 |
+| `stock_yjbb_em()` | 正式業績報表 | 完整財報資料 |
 
-快速上手示例：
+快速上手範例：
 
 ```python
 import akshare as ak
 
-# 获取 2025 年一季报预约披露时间表
+# 取得 2025 年一季報預約披露時間表
 df = ak.stock_yysj_em(date="20250331")
-# 筛选你关注的公司（以股票代码筛选）
+# 篩選你關注的公司（以股票代碼篩選）
 watchlist = ["600519", "000858", "601318", "000001"]
-my_stocks = df[df["股票代码"].isin(watchlist)]
-print(my_stocks[["股票代码", "股票简称", "首次预约时间"]])
+my_stocks = df[df["股票代碼"].isin(watchlist)]
+print(my_stocks[["股票代碼", "股票簡稱", "首次預約時間"]])
 ```
 
-### 推送渠道适配
+### 推送管道適配
 
-| 原版方案 | 国内替代 | 说明 |
+| 原版方案 | 國內替代 | 說明 |
 |---------|---------|------|
-| Telegram | **钉钉群机器人** | Webhook 方式，最简单 |
-| Telegram | **飞书机器人** | 支持富文本卡片消息 |
-| Telegram | **企业微信应用** | 企业用户首选 |
+| Telegram | **釘釘群機器人** | Webhook 方式，最簡單 |
+| Telegram | **飛書機器人** | 支援富文字卡片訊息 |
+| Telegram | **企業微信應用程式** | 企業用戶首選 |
 
-### 提示词适配
+### 提示詞適配
 
-将原版提示词中的美股部分替换为 A 股逻辑：
+將原版提示詞中的美股部分替換為 A 股邏輯：
 
 ```text
-每周日晚 8 点，运行定时任务：
-1. 调用 AKShare 的 stock_yysj_em 接口，获取下周预约披露时间表
-2. 筛选我关注的公司（600519 贵州茅台、000858 五粮液、601318 中国平安 等）
-3. 将列表推送到钉钉群"财报追踪"
-4. 等我确认要跟踪哪些
+每週日晚 8 點，執行定時任務：
+1. 呼叫 AKShare 的 stock_yysj_em 介面，取得下週預約披露時間表
+2. 篩選我關注的公司（600519 貴州茅台、000858 五糧液、601318 中國平安 等）
+3. 將列表推送到釘釘群「財報追蹤」
+4. 等我確認要跟蹤哪些
 
-当我回复确认后：
-1. 为每个披露日期安排一次性定时任务
-2. 报告发布后，搜索业绩快报和市场解读
-3. 格式化摘要：营收、净利润、同比增长、业绩预告对比、机构点评
-4. 推送到钉钉群
+當我回覆確認後：
+1. 為每個披露日期安排一次性定時任務
+2. 報告發布後，搜尋業績快報和市場解讀
+3. 格式化摘要：營收、淨利潤、同比增長、業績預告對比、機構點評
+4. 推送到釘釘群
 
-记住我通常关注的公司列表，每周自动推荐。
-同时监控业绩预告（stock_yjyg_em），有预告发布时提前通知我。
+記住我通常關注的公司列表，每週自動推薦。
+同時監控業績預告（stock_yjyg_em），有預告發布時提前通知我。
 ```
 
-### 合规提醒
+### 合規提醒
 
-- 数据仅供个人学习研究，不构成投资建议
-- 控制 API 调用频率，避免对上游平台造成压力
-- AKShare 底层依赖公开网站数据，接口可能因上游变更而需更新，建议关注其 [GitHub Issues](https://github.com/akfamily/akshare/issues)
+- 資料僅供個人學習研究，不構成投資建議
+- 控制 API 呼叫頻率，避免對上游平台造成壓力
+- AKShare 底層依賴公開網站資料，介面可能因上游變更而需更新，建議關注其 [GitHub Issues](https://github.com/akfamily/akshare/issues)
 
-### 相关链接
+### 相關連結
 
-- [AKShare 文档](https://akshare.akfamily.xyz/) — 免费开源 A 股数据接口
-- [巨潮资讯](https://www.cninfo.com.cn/) — 官方信息披露平台
-- [东方财富数据中心](https://data.eastmoney.com/) — 财报日历与数据查询
+- [AKShare 文件](https://akshare.akfamily.xyz/) — 免費開源 A 股資料介面
+- [巨潮資訊](https://www.cninfo.com.cn/) — 官方資訊披露平台
+- [東方財富資料中心](https://data.eastmoney.com/) — 財報日曆與資料查詢
 
 ---
 
-**原文链接**：[English Version](https://github.com/AlexAnys/awesome-openclaw-usecases/blob/main/usecases/earnings-tracker.md)

@@ -1,26 +1,39 @@
-# 使用子智能体（Sub-agent）进行自主项目管理
+---
+title: "使用子智能體進行自主專案管理"
+description: "建立去中心化的專案管理模式，子智能體透過共享狀態檔案自主處理任務，無需中央排程器協調。"
+category: "生產力"
+difficulty: 3
+tags:
+  - sub-agent
+  - 專案管理
+  - 多智能體
+integrations: []
+featured: false
+---
 
-管理包含多个并行工作流的复杂项目令人精疲力竭。你不得不频繁切换上下文、在不同工具间追踪状态，并手动协调任务交接。
+# 使用子智能體（Sub-agent）進行自主專案管理
 
-本用例实现了一种去中心化的项目管理模式，其中子智能体（sub-agent）自主处理任务，通过共享状态文件而非中央调度器进行协调。
+管理包含多個並行工作流程的複雜專案令人精疲力竭。你不得不頻繁切換上下文、在不同工具間追蹤狀態，並手動協調任務交接。
 
-## 痛点
+本用例實現了一種去中心化的專案管理模式，其中子智能體（sub-agent）自主處理任務，透過共享狀態檔案而非中央排程器進行協調。
 
-传统的调度器模式会造成瓶颈——主智能体变成了"交通警察"。对于复杂项目（多仓库重构、研究冲刺、内容管道），你需要能够并行工作且无需持续监督的智能体。
+## 痛點
+
+傳統的排程器模式會造成瓶頸——主智能體變成了「交通警察」。對於複雜專案（多倉庫重構、研究衝刺、內容管線），你需要能夠並行工作且無需持續監督的智能體。
 
 ## 功能概述
 
-- **去中心化协调**：智能体通过共享的 `STATE.yaml` 文件进行读写协调
-- **并行执行**：多个子智能体同时处理独立任务
-- **无调度器开销**：主会话保持精简（CEO 模式——仅负责策略）
-- **自文档化**：所有任务状态持久化在版本控制文件中
+- **去中心化協調**：智能體透過共享的 `STATE.yaml` 檔案進行讀寫協調
+- **並行執行**：多個子智能體同時處理獨立任務
+- **無排程器開銷**：主會話保持精簡（CEO 模式——僅負責策略）
+- **自文件化**：所有任務狀態持久化在版本控制檔案中
 
 ## 核心模式：STATE.yaml
 
-每个项目维护一个 `STATE.yaml` 文件作为唯一的事实来源：
+每個專案維護一個 `STATE.yaml` 檔案作為唯一的事實來源：
 
 ```yaml
-# STATE.yaml - 项目协调文件
+# STATE.yaml - 專案協調檔案
 project: website-redesign
 updated: 2026-02-10T14:30:00Z
 
@@ -48,45 +61,45 @@ next_actions:
   - "pm-frontend: Review hero with design team"
 ```
 
-## 工作原理
+## 運作原理
 
-1. **主智能体接收任务** → 生成具有特定范围的子智能体
-2. **子智能体读取 STATE.yaml** → 找到分配给自己的任务
-3. **子智能体自主工作** → 更新 STATE.yaml 中的进度
-4. **其他智能体轮询 STATE.yaml** → 认领已解除阻塞的工作
-5. **主智能体定期检查** → 审查状态，调整优先级
+1. **主智能體接收任務** → 生成具有特定範圍的子智能體
+2. **子智能體讀取 STATE.yaml** → 找到分配給自己的任務
+3. **子智能體自主工作** → 更新 STATE.yaml 中的進度
+4. **其他智能體輪詢 STATE.yaml** → 認領已解除阻塞的工作
+5. **主智能體定期檢查** → 審查狀態，調整優先順序
 
 ## 所需技能
 
-- `sessions_spawn` / `sessions_send` 用于子智能体管理
-- 文件系统访问以操作 STATE.yaml
-- Git 用于状态版本控制（可选但推荐）
+- `sessions_spawn` / `sessions_send` 用於子智能體管理
+- 檔案系統存取以操作 STATE.yaml
+- Git 用於狀態版本控制（可選但推薦）
 
-## 设置：AGENTS.md 配置
+## 設定：AGENTS.md 設定
 
 ```text
 ## PM 委派模式
 
-主会话 = 仅作为协调者。所有执行交给子智能体。
+主會話 = 僅作為協調者。所有執行交給子智能體。
 
 工作流程：
-1. 新任务到达
-2. 检查 PROJECT_REGISTRY.md 查找现有 PM
+1. 新任務到達
+2. 檢查 PROJECT_REGISTRY.md 查找現有 PM
 3. 如果 PM 存在 → sessions_send(label="pm-xxx", message="[task]")
-4. 如果是新项目 → sessions_spawn(label="pm-xxx", task="[task]")
-5. PM 执行任务，更新 STATE.yaml，汇报结果
-6. 主智能体向用户总结
+4. 如果是新專案 → sessions_spawn(label="pm-xxx", task="[task]")
+5. PM 執行任務，更新 STATE.yaml，匯報結果
+6. 主智能體向使用者彙總
 
-规则：
-- 主会话：最多 0-2 次工具调用（仅 spawn/send）
-- PM 拥有自己的 STATE.yaml 文件
-- PM 可以生成子子智能体处理并行子任务
-- 所有状态变更提交到 git
+規則：
+- 主會話：最多 0-2 次工具呼叫（僅 spawn/send）
+- PM 擁有自己的 STATE.yaml 檔案
+- PM 可以生成子子智能體處理並行子任務
+- 所有狀態變更提交到 git
 ```
 
-## 示例：生成一个 PM
+## 範例：生成一個 PM
 
-以下是一个用户请求和智能体响应的示例：
+以下是一個使用者請求和智能體回應的範例：
 
 ```text
 User: "Refactor the auth module and update the docs"
@@ -106,22 +119,21 @@ PM subagent:
 4. Reports completion to main
 ```
 
-## 关键洞察
+## 關鍵洞察
 
-- **STATE.yaml 优于调度器**：基于文件的协调比消息传递更具扩展性
-- **Git 作为审计日志**：提交 STATE.yaml 的变更以获得完整历史记录
-- **标签命名规范很重要**：使用 `pm-{project}-{scope}` 格式便于追踪
-- **精简主会话**：主智能体做得越少，响应就越快
+- **STATE.yaml 優於排程器**：基於檔案的協調比訊息傳遞更具擴展性
+- **Git 作為稽核日誌**：提交 STATE.yaml 的變更以取得完整歷史記錄
+- **標籤命名規範很重要**：使用 `pm-{project}-{scope}` 格式便於追蹤
+- **精簡主會話**：主智能體做得越少，回應就越快
 
-## 灵感来源
+## 靈感來源
 
-该模式受到 [Nicholas Carlini 的方法](https://nicholas.carlini.com/)启发——让智能体自我组织，而非微观管理它们。
+該模式受到 [Nicholas Carlini 的方法](https://nicholas.carlini.com/)啟發——讓智能體自我組織，而非微觀管理它們。
 
-## 相关链接
+## 相關連結
 
-- [OpenClaw 子智能体文档](https://github.com/openclaw/openclaw)
-- [Anthropic：构建高效智能体](https://www.anthropic.com/research/building-effective-agents)
+- [OpenClaw 子智能體文件](https://github.com/openclaw/openclaw)
+- [Anthropic：構建高效智能體](https://www.anthropic.com/research/building-effective-agents)
 
 ---
 
-**原文链接**：[English Version](https://github.com/AlexAnys/awesome-openclaw-usecases/blob/main/usecases/autonomous-project-management.md)

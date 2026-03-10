@@ -1,74 +1,86 @@
-# 语义记忆搜索
+---
+title: "語義記憶搜尋"
+description: "為 OpenClaw 的記憶系統加入語義搜尋能力，輕鬆找到任意時間點儲存的決定和筆記。"
+category: "研究與學習"
+difficulty: 2
+tags:
+  - 語義搜尋
+  - 記憶
+  - RAG
+integrations: []
+featured: false
+---
 
-OpenClaw 的内置记忆系统将所有内容存储为 Markdown 文件——但随着记忆在数周和数月间不断增长，要找到上周二的那个决定变得几乎不可能。没有搜索功能，只能滚动浏览文件。
+# 語義記憶搜尋
 
-这个用例使用 [memsearch](https://github.com/zilliztech/memsearch) 在 OpenClaw 现有的 Markdown 记忆文件之上添加了**向量驱动的语义搜索**，让你可以通过语义而非仅靠关键词即时找到任何过去的记忆。
+OpenClaw 的內建記憶系統將所有內容儲存為 Markdown 檔案——但隨著記憶在數週和數月間不斷增長，要找到上週二的那個決定變得幾乎不可能。沒有搜尋功能，只能滾動瀏覽檔案。
 
-## 功能介绍
+這個用例使用 [memsearch](https://github.com/zilliztech/memsearch) 在 OpenClaw 現有的 Markdown 記憶檔案之上新增了**向量驅動的語義搜尋**，讓你可以透過語義而非僅靠關鍵詞即時找到任何過去的記憶。
 
-- 用一条命令将所有 OpenClaw Markdown 记忆文件索引到向量数据库（Milvus）中
-- 按语义搜索："我们选了什么缓存方案？"即使文档中没有出现"缓存"这个词也能找到相关记忆
-- 混合搜索（dense vector（稠密向量）+ BM25 全文检索）配合 RRF（倒数排名融合）重排序，获得最佳结果
-- SHA-256 内容哈希意味着未更改的文件永远不会被重新嵌入——零 API 调用浪费
-- 文件监视器在记忆文件变更时自动重新索引，保持索引始终最新
-- 支持任何 embedding（向量嵌入）提供商：OpenAI、Google、Voyage、Ollama，或完全本地运行（无需 API 密钥）
+## 功能介紹
 
-## 痛点
+- 用一條指令將所有 OpenClaw Markdown 記憶檔案索引到向量資料庫（Milvus）中
+- 按語義搜尋：「我們選了什麼快取方案？」即使文件中沒有出現「快取」這個詞也能找到相關記憶
+- 混合搜尋（dense vector（稠密向量）+ BM25 全文檢索）搭配 RRF（倒數排名融合）重排序，取得最佳結果
+- SHA-256 內容雜湊值意味著未更改的檔案永遠不會被重新嵌入——零 API 呼叫浪費
+- 檔案監視器在記憶檔案變更時自動重新索引，保持索引始終最新
+- 支援任何 embedding（向量嵌入）提供商：OpenAI、Google、Voyage、Ollama，或完全本地執行（無需 API 金鑰）
 
-OpenClaw 的记忆以纯 Markdown 文件存储。这对可移植性和人类可读性来说很好，但没有搜索功能。随着记忆增长，你要么只能 grep 文件（仅支持关键词，会漏掉语义匹配），要么将整个文件加载到上下文中（在无关内容上浪费 token）。你需要一种方式来问"我关于 X 做了什么决定？"并获得精确的相关片段，而不受措辞影响。
+## 痛點
+
+OpenClaw 的記憶以純 Markdown 檔案儲存。這對可移植性和人類可讀性來說很好，但沒有搜尋功能。隨著記憶增長，你要麼只能 grep 檔案（僅支援關鍵詞，會漏掉語義比對），要麼將整個檔案載入到上下文中（在無關內容上浪費 token）。你需要一種方式來問「我關於 X 做了什麼決定？」並取得精確的相關片段，而不受措辭影響。
 
 ## 所需技能
 
-- 无需 OpenClaw 技能——memsearch 是一个独立的 Python CLI/库
+- 無需 OpenClaw 技能——memsearch 是一個獨立的 Python CLI／函式庫
 - Python 3.10+ 以及 pip 或 uv
 
-## 如何设置
+## 如何設定
 
-1. 安装 memsearch：
+1. 安裝 memsearch：
 ```bash
 pip install memsearch
 ```
 
-2. 运行交互式配置向导：
+2. 執行互動式設定精靈：
 ```bash
 memsearch config init
 ```
 
-3. 索引你的 OpenClaw 记忆目录：
+3. 索引你的 OpenClaw 記憶目錄：
 ```bash
 memsearch index ~/path/to/your/memory/
 ```
 
-4. 按语义搜索你的记忆：
+4. 按語義搜尋你的記憶：
 ```bash
 memsearch search "what caching solution did we pick?"
 ```
 
-5. 若需实时同步，启动文件监视器——每次文件变更时自动索引：
+5. 若需即時同步，啟動檔案監視器——每次檔案變更時自動索引：
 ```bash
 memsearch watch ~/path/to/your/memory/
 ```
 
-6. 若需完全本地化部署（无需 API 密钥），安装本地 embedding 提供商：
+6. 若需完全本地化部署（無需 API 金鑰），安裝本地 embedding 提供商：
 ```bash
 pip install "memsearch[local]"
 memsearch config set embedding.provider local
 memsearch index ~/path/to/your/memory/
 ```
 
-## 关键洞察
+## 關鍵洞察
 
-- **Markdown 始终是数据源。** 向量索引只是一个派生缓存——你可以随时用 `memsearch index` 重建它。你的记忆文件永远不会被修改。
-- **智能去重节省成本。** 每个文本块通过 SHA-256 内容哈希标识。重新运行 `index` 只会嵌入新增或更改的内容，因此你可以随意运行而不会浪费 embedding API 调用。
-- **混合搜索优于纯向量搜索。** 通过 Reciprocal Rank Fusion（倒数排名融合）将语义相似度（稠密向量）与关键词匹配（BM25）结合，既能捕获基于语义的查询，也能捕获精确匹配的查询。
+- **Markdown 始終是資料來源。** 向量索引只是一個衍生快取——你可以隨時用 `memsearch index` 重建它。你的記憶檔案永遠不會被修改。
+- **智慧去重節省成本。** 每個文字區塊透過 SHA-256 內容雜湊值識別。重新執行 `index` 只會嵌入新增或更改的內容，因此你可以隨意執行而不會浪費 embedding API 呼叫。
+- **混合搜尋優於純向量搜尋。** 透過 Reciprocal Rank Fusion（倒數排名融合）將語義相似度（稠密向量）與關鍵詞比對（BM25）結合，既能擷取基於語義的查詢，也能擷取精確比對的查詢。
 
-## 相关链接
+## 相關連結
 
-- [memsearch GitHub](https://github.com/zilliztech/memsearch) —— 驱动此用例的库
-- [memsearch 文档](https://zilliztech.github.io/memsearch/) —— 完整的 CLI 参考、Python API 和架构说明
-- [OpenClaw](https://github.com/openclaw/openclaw) —— 启发 memsearch 的记忆架构
-- [Milvus](https://milvus.io/) —— 向量数据库后端
+- [memsearch GitHub](https://github.com/zilliztech/memsearch) —— 驅動此用例的函式庫
+- [memsearch 文件](https://zilliztech.github.io/memsearch/) —— 完整的 CLI 參考、Python API 和架構說明
+- [OpenClaw](https://github.com/openclaw/openclaw) —— 啟發 memsearch 的記憶架構
+- [Milvus](https://milvus.io/) —— 向量資料庫後端
 
 ---
 
-**原文链接**：[English Version](https://github.com/AlexAnys/awesome-openclaw-usecases/blob/main/usecases/semantic-memory-search.md)
